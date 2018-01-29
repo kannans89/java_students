@@ -13,6 +13,7 @@ public class DisplayAction extends ActionSupport implements ModelDriven<DisplayV
 	private StudentService studentService;
 	public DisplayAction() {
 		System.out.println("Action class constructor");
+		model = new DisplayViewModel();
 	}
 	public String execute()
 	{
@@ -21,7 +22,7 @@ public class DisplayAction extends ActionSupport implements ModelDriven<DisplayV
 	}
 	@Override
 	public DisplayViewModel getModel() {
-		model=new DisplayViewModel();
+		//model=new DisplayViewModel();
 		return model;
 	}
 
