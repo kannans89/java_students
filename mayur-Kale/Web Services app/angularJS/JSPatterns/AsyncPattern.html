@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Async Pattern</title>
+</head>
+
+<body>
+    <h1>Async Pattern</h1>
+</body>
+<script type="text/javascript">
+var add = function(x, y) {
+    return (x + y);
+}
+
+var addAsync = function(x, y, fnCb) {
+    setTimeout(function() {
+        fnCb(x + y);
+    }, 0);
+}
+
+var main = (function() {
+    console.log(add(1, 2));
+    addAsync(2, 2, function(r) {
+        console.log(r);
+    });
+    console.log('End of main');
+})();
+</script>
+
+</html>

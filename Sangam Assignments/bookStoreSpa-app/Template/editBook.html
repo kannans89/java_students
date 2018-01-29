@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		#edit{
+			text-align: center;
+			background-color: aliceblue
+		}
+		.left {
+    		width: 30%;
+    		float: left;
+    		text-align: right;
+		}
+		.right {
+    	width: 65%;
+    	margin-left: 10px;
+    	float:left;
+		}
+	</style>
+<div id="edit">
+    <h2 align="center">Edit Book</h2>
+    <form>  
+       <label class="left">Title :</label><input type="text" id="title" ng-model='title' class="right" /><br> 
+        <label class="left">Author :</label><input type="text" id="author" ng-model='author' class="right"/><br> 
+        <label class="left">Image :</label><input type="text" id="image" ng-model='image' class="right"/><br>
+        <label class="left">Description:</label><input type="text" id="Description" ng-model="description" class="right"/><br>
+        
+		<input type="button" id="addBook" value="Save" ng-click="updateBookDetails()" class="btn btn-default"/> 
+        <a href="#/"> <input  type="button"  id="home" value="Back" class="btn btn-default"/></a>
+    </form>
+</div>
+</html>

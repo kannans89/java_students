@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean name="employee" class="com.techlabs.employee.Employee">
+     <constructor-arg type="int">
+            <value>1</value>
+        </constructor-arg>
+         
+     <constructor-arg type="double">
+            <value>100000</value>
+        </constructor-arg>
+        
+         <constructor-arg type="java.lang.String">
+            <value>Associate Engineer</value>
+        </constructor-arg>
+    </bean>
+    
+     <bean name="employee1" class="com.techlabs.employee.Employee">
+     <constructor-arg type="int">
+            <value>2</value>
+        </constructor-arg>
+         
+     <constructor-arg type="double">
+            <value>20000</value>
+        </constructor-arg>
+    </bean>
+    
+     <bean name="employee2" class="com.techlabs.employee.Employee">
+     <constructor-arg type="int">
+            <value>1</value>
+        </constructor-arg>
+         
+     <constructor-arg type="double">
+            <value>100000</value>
+        </constructor-arg>
+        
+         <constructor-arg type="java.lang.String">
+            <value>Vaibhavi</value>
+        </constructor-arg>
+     
+         <constructor-arg type="java.lang.String">
+            <value>Associate Engineer1</value>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="InsideSetter" class="com.techlabs.employee.aggregationcomposition.Employee">
+    <constructor-arg ref="addressinfo"></constructor-arg>
+    
+    <property name="insurance">
+    <bean name="insuranceinfo" class="com.techlabs.employee.aggregationcomposition.InsuranceInfo">
+    <constructor-arg type="java.lang.String">
+    <value>LIC</value>
+    </constructor-arg>
+    <constructor-arg type="java.lang.String">
+    <value>111</value>
+    </constructor-arg>
+    </bean>
+    </property>
+    </bean>
+    
+    <bean name="addressinfo" class="com.techlabs.employee.aggregationcomposition.AddressInfo">
+    <constructor-arg type="java.lang.String">
+    <value>Chandrakiran</value>
+    </constructor-arg>
+    <constructor-arg type="java.lang.String">
+    <value>malad west</value>
+    </constructor-arg>
+    <constructor-arg type="java.lang.String">
+    <value>mumbai</value>
+    </constructor-arg>
+    <constructor-arg type="java.lang.String">
+    <value>393001</value>
+    </constructor-arg>
+    </bean>
+    </beans>

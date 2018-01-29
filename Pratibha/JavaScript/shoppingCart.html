@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #form {
+            padding: 20px;
+            border: 2px solid;
+        }
+
+        #cart {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid;
+            background: lightblue;
+        }
+
+        th,
+        td,
+        tr {
+            border: 1px solid;
+        }
+    </style>
+    <script>
+          //operation.js  
+        var inames = []
+        var iqty = []
+        var iprice = []
+        var match=0;
+        function addItem() {
+            for (i = 0; i < inames.length; i++) {
+                    if((document.getElementById('pname').value)==inames[i]){
+                        iqty[i]=iqty[i]+parseInt(document.getElementById('pqty').value);
+                        match=1;
+                        break;
+                    }
+            }
+            
+            if(match!=1){
+            inames.push(document.getElementById('pname').value)
+            
+            iqty.push(parseInt(document.getElementById('pqty').value))
+            iprice.push(samsung.getUnitPrice());    //yaha par product call karna hai     
+            }
+
+            displayCart()
+        }
+        function displayCart() {
+            cartData = "<table><tr><th>Product Name</th><th>Quantity</th><th>Price</th><th>Total</th>";
+            total = 0;
+            for (i = 0; i < inames.length; i++) {
+                total += iqty[i] * iprice[i]
+                cartData += "<tr><td>" + inames[i] + "</td><td>" + iqty[i]
+                    + "</td><td>" + iprice[i] + "</td><td>" + iqty[i] * iprice[i]
+                    + "</td><td><button onclick='delElement(" + i + ")'>Delete</button></td></tr>"
+            }
+            cartData += '<tr><br><td>Grand Total</td><td></td><td></td><td>' + total + '</td></tr></table>'
+            document.getElementById('cart').innerHTML = cartData;
+        }
+        function delElement(a) {
+            inames.splice(a, 1)
+            iqty.splice(a, 1)
+            iprice.splice(a, 1)
+            displayCart()
+        }
+
+
+        //product.js
+
+        
+        var Product = function () {
+            var produt_id;
+            var product_name;
+            var unit_price;
+            this.setProductId = function (id) {
+                if (id > 0)
+                    produt_id = id;
+            }
+            this.getProductId = function () {
+                return produt_id;
+            }
+            this.setProductName = function (name) {
+                if (name.length > 0)
+                    product_name = name;
+            }
+            this.getProductName = function () {
+                return product_name;
+            }
+            this.setUitPrice = function (price) {
+                if (price > 0)
+                    unit_price = price;
+            }
+            this.getUnitPrice = function () {
+                return unit_price;
+            }
+        }
+
+
+
+        var iPhone = new Product();
+        iPhone.setProductId(101);
+        iPhone.setProductName("iPhone");
+        iPhone.setUitPrice(50000);
+
+        var samsung = new Product();
+        samsung.setProductId(102);
+        samsung.setProductName("samsung");
+        samsung.setUitPrice(25000);
+
+        var redmi = new Product();
+        redmi.setProductId(103);
+        redmi.setProductName("redmi");
+        redmi.setUitPrice(19000);
+
+        var sony = new Product();
+        sony.setProductId(104);
+        sony.setProductName("sony");
+        sony.setUitPrice(30000);
+
+    </script>
+</head>
+
+<body>
+
+    <div id="form">
+        <h1> Online Shopping Application</h1>
+        <label>Product Name</label>
+        <select id="pname">
+            <option value="iPhone">iPhone</option>
+            <option value="samsung">samsung</option>
+            <option value="redmi">redmi</option>
+            <option value="sony">sony</option>
+        </select>
+        <label>Quantity</label>
+        <input id="pqty" type="number">
+        <label>Unit Price</label>
+        <input id="price" type="number">
+        <button onclick="addItem()">Add Item</button>
+    </div>
+    <div id="cart"></div>
+
+</body>
+
+</html>

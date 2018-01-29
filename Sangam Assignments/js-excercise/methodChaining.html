@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<input type="text" id="textId">
+<button type="button" id="buttonID" onclick="methodChaining()">Click me</button>
+<script>
+function methodChaining(){
+    var id=Document.getElementById("textId");
+	id.value=getId().getName();
+}
+	function getId()
+	{
+		return 10;
+	}
+	function getName()
+	{
+		return "sangam";
+	}
+
+</script>
+
+</body>
+</html>

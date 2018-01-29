@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Form</title>
+</head>
+
+<body>
+    <h1>Login Form</h1>
+    <form name="login" action="authenticate.php" onsubmit="return onSubmitForm()" method="POST">
+        UserName :
+        <br>
+        <input type="text" name="name">
+        <span id="nameAlert" style="color:red"></span>
+        <br> Password :
+        <br>
+        <input type="password" name="password">
+        <span id="passwordAlert" style="color:red"></span>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    <script type="text/javascript">
+    function onSubmitForm() {
+        var name = document.forms["login"]["name"].value;
+        var password = document.forms["login"]["password"].value;
+
+        if (name.length == 0 || password.length == 0) {
+            if (name.length == 0)
+                document.getElementById("nameAlert").innerHTML = "*";
+            else document.getElementById("nameAlert").innerHTML = "";
+
+            if (password.length == 0)
+                document.getElementById("passwordAlert").innerHTML = "*";
+            else {
+                document.getElementById("passwordAlert").innerHTML = "";
+            }
+
+            return false;
+        }
+        return true;
+
+    }
+    </script>
+</body>
+
+</html>

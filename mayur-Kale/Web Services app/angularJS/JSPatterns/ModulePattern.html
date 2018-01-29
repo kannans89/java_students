@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Module Pattern</title>
+</head>
+
+<body>
+    <h1>Understanding Module Pattern</h1>
+</body>
+<script type="text/javascript">
+var makeStudent = function(id, name, age, agg) {
+    var studentObj = {};
+
+    studentObj.getId = function() {
+        return id;
+    }
+
+    studentObj.getName = function() {
+        return name;
+    }
+    studentObj.getAge = function() {
+        return age;
+    }
+    studentObj.getAgg = function() {
+        return agg;
+    }
+    studentObj.getGrade = function() {
+        if (agg <= 10 && agg >= 7)
+            return 'green';
+        else if (agg < 7 && agg >= 5)
+            return 'yellow';
+        else if (agg < 5)
+            return 'red';
+
+    }
+
+
+    return studentObj;
+}
+
+var student1 = makeStudent(10, 'mayur', 21, 7.1);
+var student2 = makeStudent(15, 'vikram', 21, 6.1);
+
+console.log(student1.getName() + " " + student1.getGrade());
+console.log(student2.getName() + " "  +
+    student2.getGrade());
+</script>
+
+</html>

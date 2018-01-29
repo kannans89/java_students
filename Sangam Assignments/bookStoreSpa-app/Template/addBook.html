@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		#add{
+			text-align: center;
+			background-color: aliceblue
+		}
+		.left {
+    		width: 30%;
+    		float: left;
+    		text-align: right;
+		}
+		.right {
+    	width: 65%;
+    	margin-left: 10px;
+    	float:left;
+		}
+	</style>
+
+<div id="add">
+    <div>
+        <h2 align="center"> Add Book</h2></div>
+    <div>
+        <label class="left">Title :</label>
+        <input type="text" value="" ng-model="title" placeholder="Enter Title" class="right"><br>
+        <label class="left">Author:</label> 
+        <input type="text" value="" ng-model="author" placeholder="Enter author Name" class="right"><br>
+         <label class="left">Image:</label>
+        <input type="text" value="" ng-model="image" placeholder="Enter Image URL" class="right"><br>     
+        <label class="left">Description:</label>
+        <textarea value="" ng-model="description" placeholder="Enter Book description" class="right"></textarea><br><br><br><br>
+		
+        <input type="button" value="ADD" ng-click="addBook()" class="btn btn-default">
+        <a href="#/"><input type="button" value="BACK" class="btn btn-default"> </a>
+    </div>
+</div>

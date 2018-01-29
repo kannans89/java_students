@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="mainApp"
+>
+
+<head>
+    <title>Welcome</title>
+    <script src="angular.min.js"></script>
+    <script src="controller1.js"></script>
+</head>
+
+<body ng-controller='AppCtrl'>
+    <h1>Welcome to Website @ Mayur</h1> Enter Guest Name:
+    <input type="text" placeholder="Enter name" ng-model="guestName" />
+    <input type="button" value="wish" ng-click="wish()" />
+    <section>{{wishText}}</section>
+    <br> Mayur says hello to
+    <span ng-bind="guestName"></span>
+</body>
+
+</html>

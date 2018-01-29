@@ -1,0 +1,11 @@
+<web-app>
+<servlet>
+  <servlet-name>welcomejsp</servlet-name>
+  <jsp-file>/Welcome.jsp</jsp-file>
+</servlet>
+ 
+ <servlet-mapping>
+ <servlet-name>welcomejsp</servlet-name>
+ <url-pattern>/welcomejsp</url-pattern>
+ </servlet-mapping>
+</web-app>

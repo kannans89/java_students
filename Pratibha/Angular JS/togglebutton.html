@@ -1,0 +1,14 @@
+<html>
+<script src="angular.js"></script>
+<body>
+<div ng-app="" ng-init="showMe=false">
+Click button to print data: <input type="button"  value="Click" ng-click="showMe=!showMe">
+
+<p ng-show="showMe">{{showMe}}
+Image:<img ng-src="download.jpg" alt="image">
+</p>
+
+</body>
+</html>
+
+

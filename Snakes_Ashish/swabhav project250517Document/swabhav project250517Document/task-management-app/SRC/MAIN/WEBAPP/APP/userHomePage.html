@@ -1,0 +1,287 @@
+<div ng-include src="'app/header.html'"></div>
+<div class="container-fluid">
+		<!-- <div align="center" class="bd-default">
+			<h4>.</h4>
+			<h1>User Tasks</h1>
+			
+			</div> -->
+			<div class="creatediv1 marginTop30">
+				<div class="row margin-top-30">
+					<div class="col-md-12">
+						<div class="panel panel-primary ">
+							<div class="panel-heading">
+								Tasks
+								
+							</div>
+							<div class="panel-body">
+							<!--  <div class="bg tablescroll table-responsive">-->
+							<table class="table table-fixed">
+								<thead><tr>
+									<th  class="col-xs-2">Task No.</th>
+						<th  class="col-xs-2">Task Name</th>
+						<th  class="col-xs-2">Start Date</th>
+						<th  class="col-xs-2">End Date</th>
+						<!--  <th>No.of Subtasks</th>-->
+						<th  class="col-xs-2"></th>
+						<th  class="col-xs-2"></th>
+									
+									</tr>
+									</thead>
+								
+				
+				<tbody>
+					<tr ng-repeat="task in tasks track by $index">
+						<td  class="col-xs-2" style="font-size:20px;">{{task.taskNo}}<span>(<span><a ng-click="showSubTask(task.taskNo)" ng-bind="task.subTaskCount" title="Click for Subtasks"></a></span>)</span></td>
+						<td  class="col-xs-2" ng-bind="task.taskName"></td>
+						<td  class="col-xs-2" ng-bind="task.startDate"></td>
+						<td  class="col-xs-2" ng-bind="task.endDate"></td>
+						<!--  <td  class="col-xs-2"><a ng-click="showSubTask(task.taskNo)" ng-bind="task.subTaskCount" title="Click for Subtasks"></a></td>-->
+						<td  class="col-xs-2"><button class="btn btn-info btn-sm"
+								ng-click="viewupdateTask(task.taskNo)" data-target="#updateTask"
+								data-toggle="modal" title="Update Task" style="width:40px; height:40px; padding:4px; border-radius:50%; box-shadow:0px 0px 3px rgba(0,0,0,0.5),3px 3px 3px rgba(0,0,0,0.25);">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button></td>
+						<!-- <td><button class="btn btn-info btn-sm" ng-click="viewUpdate(task.taskNo,task.taskName,task.startDate,task.endDate)">update Task</button></td> -->
+						<td  class="col-xs-2"><button class="btn btn-danger btn-sm"
+								data-target="#deleteTask" data-toggle="modal"
+								ng-click="setTaskToDelete(task.taskNo)" title="Delete Task" style="width:40px; height:40px; padding:4px; border-radius:50%; box-shadow:0px 0px 3px rgba(0,0,0,0.5),3px 3px 3px rgba(0,0,0,0.25);">
+								<span class="glyphicon glyphicon-remove-sign"></span>
+							</button></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			</div>
+							 <button class="btn btn-success btn-sm" style="float:right; right:80px; bottom:80px;   width:50px; height:50px; padding:6px; position: fixed; border-radius:50%; box-shadow:0px 0px 3px rgba(0,0,0,0.5),3px 3px 3px rgba(0,0,0,0.25);" data-target="#addTask"
+					data-toggle="modal" title="Add Task"><span class="glyphicon glyphicon-plus"></span></button>		
+						</div>
+					</div>
+				</div>
+   
+</div>
+
+	
+</div>
+<div class="modal fade" id="updateTask" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Update Task</h4>
+			</div>
+			<div class="modal-body">
+				<div>
+
+					<form name="updateForm" novalidate>
+
+						<div class="form-group">
+							<label>Task no:</label> <input type="text" class="form-control input-sm"
+								ng-model="task.taskNo" " readonly>
+
+						</div>
+						<div class="form-group">
+							<label>name:</label> <input type="text" class="form-control input-sm"
+								name="name" ng-model="task.taskName"
+								required>
+							<p style="color: #FF0000;" class="help-block">{{updateNameError}}</p>
+							<p
+								ng-show="updateForm.name.$invalid && !updateForm.name.$pristine"
+								class="help-block" style="color: #FF0000;">username is
+								required.</p>
+						</div>
+						<div class="form-group">
+
+							<label>startDate:</label> <input type="text" class="form-control input-sm datepicker"
+								name="startdate" ng-model="task.startDate" required>
+							<p
+								ng-show="updateForm.startdate.$invalid && !updateForm.startdate.$pristine"
+								class="help-block" style="color: #FF0000;">Start date is
+								required.</p>
+
+						</div>
+						<div class="form-group">
+							<label>EndDate:</label> <input type="text" class="form-control input-sm datepicker"
+								name="enddate" ng-model="task.endDate" required>
+
+							<p
+								ng-show="updateForm.enddate.$invalid && !updateForm.enddate.$pristine"
+								class="help-block" style="color: #FF0000;">End date is
+								required.</p>
+
+						</div>
+
+
+
+						<button data-dismiss="modal" ng-click="updateTask(task.taskNo)"
+							ng-model="value" class="btn btn-info btn-sm">update</button>
+
+
+					</form>
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-sm"
+					data-dismiss="modal" ng-disabled="updateForm.$invalid">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="addTask" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add Task</h4>
+			</div>
+			<div class="modal-body">
+
+				<form name="addTaskForm" novalidate>
+					<div class="form-group">
+						<label>Task name:</label> <input type="text" name="name"
+							class="form-control input-sm" ng-model="task.taskName" required
+							>
+						<p style="color: #FF0000;" class="help-block">{{addNameError}}</p>
+						<p
+							ng-show="addTaskForm.name.$invalid && !addTaskForm.name.$pristine"
+							class="help-block" style="color: #FF0000;">username is
+							required.</p>
+					</div>
+					<div class="form-group">
+						<label>startDate:</label> <input type="text" name="startdate"
+							class="form-control input-sm datepicker" ng-model="task.startDate" required>
+						<p
+							ng-show="addTaskForm.startdate.$invalid && !addTaskForm.startdate.$pristine"
+							class="help-block" style="color: #FF0000;">Start date is
+							required.</p>
+					</div>
+					<div class="form-group">
+						<label>EndDate:</label> <input type="text" name="enddate"
+							class="form-control input-sm datepicker" ng-model="task.endDate" required>
+
+						<p
+							ng-show="addTaskForm.enddate.$invalid && !addTaskForm.enddate.$pristine"
+							class="help-block" style="color: #FF0000;">End date is
+							required.</p>
+					</div>
+					<button ng-click="addTask()" ng-model="value"
+						class="btn btn-primary btn-sm" data-dismiss="modal"
+						ng-disabled="addTaskForm.$invalid">Add task</button>
+				</form>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="deleteTask" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title">Delete Task</h5>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+
+					<h6>Are you sure you want to delete this Task?</h6>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button ng-click="deleteTask()" ng-model="value"
+					class="btn btn-primary btn-sm" data-dismiss="modal">Yes</button>
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">No</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="deleteTaskAlert" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title">Delete Alert</h5>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+					<h6>Task deleted successfully!!!</h6>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-sm"
+					data-dismiss="modal">ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="addTaskAlert" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title">Add Alert</h5>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+					<h6>Task Added successfully!!!</h6>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-sm"
+					data-dismiss="modal">ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="updateTaskAlert" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title">Update Alert</h5>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+					<h6>Task Updated successfully!!!</h6>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-sm"
+					data-dismiss="modal">ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="noTaskAlert" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h5 class="modal-title">Task Alert</h5>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+					<h6>NO Task !!! Add one.</h6>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary btn-sm"
+					data-dismiss="modal">ok</button>
+			</div>
+		</div>
+	</div>
+</div>

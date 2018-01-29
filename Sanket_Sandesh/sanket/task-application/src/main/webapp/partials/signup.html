@@ -1,0 +1,76 @@
+<section class="jumbotron text-center" id="signUpSection">
+	<h2>Sign-Up Module</h2>
+	<div class="btn-group">
+		<a href="#/" class="btn btn-success" type="button">Back to Home</a>
+	</div>
+</section>
+<div class="container">
+	<form class="form-horizontal" role="form">
+		<h2 align="center" style="color: brown">Registration Form</h2>
+		<h3 class="text-center" style="color: red;">{{error}}</h3>
+		<div class="form-group">
+			<label for="firstName" class="col-sm-3 control-label" style="color: white;">First
+				Name</label>
+			<div class="col-sm-9">
+				<input type="text" id="firstName" placeholder="First Name"
+					class="form-control" autofocus required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="LastName" class="col-sm-3 control-label" style="color: white;">Last
+				Name</label>
+			<div class="col-sm-9">
+				<input type="text" id="LastName" placeholder="Last Name"
+					class="form-control" autofocus required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="UserName" class="col-sm-3 control-label" style="color: white;">UserName
+			</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" ng-model="username"
+					placeholder="Enter Username" required="required"
+					autofocus="autofocus" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="password" class="col-sm-3 control-label" style="color: white;">Password</label>
+			<div class="col-sm-9">
+				<input type="password" class="form-control" ng-model="password1"
+					placeholder="Enter Password" required="required" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="re-password" class="col-sm-3 control-label" style="color: white;">Re-Enter
+				Password</label>
+			<div class="col-sm-9">
+				<input type="password" class="form-control" ng-model="password2"
+					placeholder="Re-Enter Password" required="required" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email" class="col-sm-3 control-label" style="color: white;">Email</label>
+			<div class="col-sm-9">
+				<input type="Email" class="form-control" ng-model="email"
+					placeholder="Enter Email" required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="Contact-No" class="col-sm-3 control-label" style="color: white;">Contact
+				No </label>
+			<div class="col-sm-9">
+				<input type="number" id="contact"
+					placeholder="Enter your contact number" class="form-control"
+					autofocus required="required">
+			</div>
+		</div>
+		<!-- /.form-group -->
+		<div class="form-group">
+			<div class="col-sm-9 col-sm-offset-3">
+				<button type="submit" class="btn btn-success btn-block"
+					ng-click="signup()">Register</button>
+			</div>
+		</div>
+	</form>
+	<!-- /form -->
+</div>

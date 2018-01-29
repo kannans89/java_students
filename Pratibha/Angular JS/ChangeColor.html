@@ -1,0 +1,18 @@
+<html>
+<head>
+<script src="angular.js"></script>
+</head>
+<body >
+<section ng-app="" ng-init="myCol='pink';col=['red','blue','yellow'];bgcol=['red','blue','yellow'];textsize=['100%','200%','300%','400%','500%'];firstname='ABC'" style="color:{{selectedCol2}}">  
+Select Text Color:<select ng-model="selectedCol" ng-options="item for item in bgcol"></select><br>
+Select Section Color:<select ng-model="selectedCol2" ng-options="item for item in bgcol"></select><br>
+Select Size of text:<select ng-model="textsize1" ng-options="item for item in textsize"></select><br>
+
+ Name: <input ng-model="firstname" >
+ 
+<p>Hellow    <p style="color:{{selectedCol}};font-size:{{textsize1}}" >{{firstname}}</p>
+</p>
+<p style="font-size:{{textsize1}}">hi</p>
+</section>
+</body>
+</html>

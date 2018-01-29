@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+   <package name="com.techlabs.action" namespace="/" extends="struts-default">
+<action name="">
+<result>/home.html</result>
+</action>
+ <action name="addto">
+            <result>WEB-INF/Veiw/Add.jsp</result>
+
+</action>
+  <action name="add" 
+            class="com.techlabs.action.AddAction" 
+            method="execute">
+            <result type="redirectAction">/display</result>
+      </action>
+      <action name="display" 
+            class="com.techlabs.action.DisplayAction" 
+            method="execute">
+            <result name="success">WEB-INF/Veiw/welcome.jsp</result>
+      </action>
+  
+  <action name="delete" 
+            class="com.techlabs.action.DeleteAction" 
+            method="execute">
+            <result type="redirectAction">/display</result>
+      </action>
+  <action name="edit" 
+            class="com.techlabs.action.EditAction" 
+            method="execute">
+            <result name="get">/WEB-INF/Veiw/Edit.jsp</result>
+            <result name="success" type="redirectAction">/display</result>
+            <result name="input" type="redirectAction">/display</result>
+      </action>
+  
+</package>
+</struts>    

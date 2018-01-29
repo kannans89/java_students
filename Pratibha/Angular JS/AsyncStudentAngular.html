@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="angular.js"></script>
+    <script>
+        var mainModule = angular.module("studentsModule", []);
+        mainModule.service("studentService", function($http) {
+            this.get = function() {
+                return $http.get("http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students");
+            };
+        });
+        mainModule.controller("studentController", function($scope, studentService) {
+            studentService.get().then(function(response) {
+                console.log(response.data);
+                $scope.result = (response.data);
+            });
+        });
+
+    </script>
+</head>
+
+<body ng-app="studentsModule">
+    <div ng-controller="studentController">
+        <table border="1">
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email-id</th>
+                <th>Date</th>
+                <th>Is Male</th>
+            </tr>
+            <tr ng-repeat="data in result track by $index">
+                <td>{{data.rollNo}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.date}}</td>
+                <td>{{data.isMale}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

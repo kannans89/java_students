@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Protein Tracker</title>
+    <script src="angular.min.js"></script>
+    <script src="controller5.js"></script>
+</head>
+
+<body ng-app="mainApp" ng-controller='ProteinCtrl'>
+    <h1>Protein Tracker</h1>
+    <br> Amount :
+    <input type="number" ng-model="amount">
+    <input type="button" value="Add" ng-click="add()">
+    <br>
+    <br> Total:
+    <span ng-bind="total" style="color : {{colorType}}"></span>
+    <center>
+        <input type="button" value="Settings" ng-click="settings()">
+        <br>
+        <span id="goalBlock" style="visibility:{{showBlock}}">
+        <br> Goal :
+        <input type="number" ng-model="goal" value='0'> grams
+        </span>
+    </center>
+    History:
+    <section ng-repeat="historyValue in history track by $index">
+        Added : {{historyValue}} grams
+    </section>
+</body>
+
+</html>

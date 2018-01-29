@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+		<action name="viewCustomer" class="viewCustomerSpring">
+			<result name="success">
+				/WEB-INF/jsp/viewCustomer.jsp
+			</result>
+		</action>
+		<action name="addCustomer" class="addCustomerSpring">
+			<result name="get">
+				/WEB-INF/jsp/addCustomer.jsp
+			</result>
+			<result name="post" type="chain">
+				viewCustomer
+			</result>
+			<result name="unknown">
+				/WEB-INF/jsp/unknown.jsp
+			</result>
+		</action>
+		<action name="/deleteCustomer*" class="deleteCustomerSpring">
+			<result name="success" type="chain">
+				viewCustomer
+			</result>
+		</action>
+		<action name="/updateCustomer*" class="updateCustomerSpring" >
+			<result name="get">
+				/WEB-INF/jsp/updateCustomer.jsp
+			</result>
+			<result name="success" type="chain">
+				viewCustomer
+			</result>
+		</action>
+	</package>
+</struts>

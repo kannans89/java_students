@@ -1,0 +1,35 @@
+
+<section class="jumbotron text-center" id="addSubSection">
+	<h2>Add Sub-Task</h2>
+	<div class="btn-group">
+		<a href="#/tasks" class="btn btn-default btn-lg" type="button">Back
+			to Home</a> <a href="#/profile" class="btn btn-success btn-lg"
+			type="button">My Profile </a><a href="#/logout"
+			class="btn btn-danger btn-lg" type="button">Logout</a>
+	</div>
+</section>
+<div class="wrapper">
+	<form class="form-signin">
+		<h4 class="form-signin-heading" align="center" style="color: blue;">Enter
+			Details</h4>
+		<!-- ID: <input type="number" class="form-control" ng-model="subtaskid" min="1" step="1" placeholder="Enter Unique SubTask Number" required="required" autofocus="autofocus" /> -->
+		<h5 align="center">
+			<label align="center">Description: </label>
+		</h5>
+		<input type="text" class="form-control" ng-model="name"
+			placeholder="Enter SubTask Description" required="required"
+			autofocus="autofocus" />
+		<h5 align="center">
+			<label>Start Date: </label>
+		</h5>
+		<input type="date" class="form-control" ng-model="startDate"
+			placeholder="Enter Start Date" required="required" />
+		<h5 align="center">
+			<label align="center">End Date: </label>
+		</h5>
+		<input type="date" class="form-control" ng-model="endDate"
+			placeholder="Enter End Date" required="required" /> <br>
+		<button class="btn btn-lg btn-success btn-block" type="submit"
+			ng-click="addSubTask()">Add Sub-Task</button>
+	</form>
+</div>

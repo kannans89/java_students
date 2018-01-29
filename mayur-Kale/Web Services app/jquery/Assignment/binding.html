@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Binding</title>
+</head>
+
+<body>
+    <b>Message</b> :
+    <input type="text" id="message">
+    <br>
+    <br>
+    <b>Size</b>:
+    <input type="number" id="size"> <b>px</b>
+    <br>
+    <br>
+    <b>Background Color</b>:
+    <select id="bgcolor">
+        <option value="white">Select Color</option>
+        <option value="#FF0000">Red</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#00FF00">Green</option>
+    </select>
+    <br>
+    <br>
+    <b>Text Color</b>:
+    <select id="txtcolor">
+        <option value="black">Select Color</option>
+        <option value="#FF0000">Red</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#00FF00">Green</option>
+    </select>
+    <br>
+    <br>
+    <b>Font Family</b>:
+    <input type="radio" name="fontType" value="arial"> Arial
+    <input type="radio" name="fontType" value="Times New Roman"> Times New Roman
+    <input type="radio" name="fontType" value="Georgia"> Georgia
+    <input type="radio" name="fontType" value="Serif"> Serif
+    <center>
+        <input type="button" value="Submit" id="submit">
+    </center>
+    <br>
+    <section id="textField"></section>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+    $(
+        function() {
+            $('#submit').click(function() {
+
+                $('#textField').html($('#message').val()).css({
+                    'font-size': $('#size').val() + "px",
+                    'background-color': $('#bgcolor').val(),
+                    'color': $('#txtcolor').val(),
+                    'font-family': $("input[name='fontType']:checked").val()
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

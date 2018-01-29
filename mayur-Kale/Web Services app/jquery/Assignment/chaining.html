@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Method Chanining</title>
+</head>
+
+<body>
+    <h1>Method Chanining</h1>
+    <input type="button" id="click" value="Click Me">
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+    $(
+
+        function() {
+            var clickbtn = $('#click');
+            clickbtn.click(function() {
+                clickbtn.hide('slow').show('fast').css('background-color', 'red');
+                $('h1').hide('slow').show('fast').css('color', 'yellow');
+            });
+        }
+    );
+    </script>
+</body>
+
+</html>

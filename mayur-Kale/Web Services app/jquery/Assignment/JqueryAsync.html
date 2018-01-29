@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jquery Async</title>
+</head>
+
+<body>
+    <br>
+    <br>
+    <center>
+        <input type="button" id="populate" value="Populate">
+    </center>
+    <br>
+    <section id="tableSection"></section>
+    <br>
+    <br>
+    <hr>
+    <center>
+        <section>
+            <h1>Add Record</h1> Roll No :
+            <input type="number" id="rollNo">
+            <br>
+            <br> Name :
+            <input type="text" id="name">
+            <br>
+            <br> Age :
+            <input type="number" id="age">
+            <br>
+            <br> Email :
+            <input type="email" id="email">
+            <br>
+            <br> Date :
+            <input type="date" id="date">
+            <br>
+            <br> Gender
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <br>
+            <br>
+            <input type="button" id="add" value="Add">
+        </section>
+    </center>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+    $(
+        function() {
+            var populateBtn = $('#populate');
+            var tableSection = $('#tableSection');
+            var name = $('#name');
+            var rollNo = $('#rollNo');
+            var age = $('#age');
+            var email = $('#email');
+            var date = $('#date');
+            var gender = $("input[name='gender']");
+            var addBtn = $('#add');
+            populateBtn.click(function() {
+                $.ajax({
+                    url: 'http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students',
+                    success: function(data) {
+
+                        var text = "<table> <tr> <th>Roll No</th> <th>Name</th> <th>Age</th> <th>Email</th> <th>Date</th> <th>Gender</th> </tr>";
+
+
+                        for (var index = 0; index < data.length; index++) {
+                            var genderValue = (data[index].isMale) == true ? 'Male' : 'Female';
+
+                            text += "<tr><td>" + data[index].rollNo + "</td><td>" + data[index].name + "</td><td>" + data[index].age + "</td><td>" + data[index].email + "</td><td>" + data[index].date + "</td><td>" + genderValue + "</td></tr>";
+
+
+
+                        }
+                        text += "</table>";
+
+                        tableSection.html(text);
+                        $('th').css({
+                            'border': '1px solid black',
+                            'border-collapse': 'collapse'
+                        });
+                        $('td').css({
+                            'border': '1px solid black',
+                            'border-collapse': 'collapse'
+                        });
+
+                        $('table').css({
+                            'border': '1px solid black',
+                            'width': '100%'
+                        });
+                    }
+
+                });
+            });
+
+            addBtn.click(function() {
+                if (name.val().length != 0 && rollNo.val().length != 0 && age.val().length != 0 && email.val().length != 0 && date.val().length != 0 && gender.val().length != 0) {
+                    var isMale = $("input[name='gender']:checked").val() == "male" ? true : false;
+                    // console.log(isMale)
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://gsmktg.azurewebsites.net:80/api/v1/techlabs/test/students',
+                        data: {
+                            "rollNo": rollNo.val(),
+                            "name": name.val(),
+                            "age": age.val(),
+                            "email": email.val(),
+                            "date": date.val(),
+                            "isMale": isMale
+                        },
+                        dataType: "text",
+                        success: function() {
+                            console.log('Record Added!')
+                        },
+                        error: function() {
+                            console.log('Error!')
+                        }
+
+                    });
+
+                } else
+                    console.log('a');
+            });
+
+        }
+
+    );
+    </script>
+</body>
+
+</html>

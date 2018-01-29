@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.js"></script>
+<body>
+
+<section ng-app="CollectionApp" ng-controller="namesCtrl">
+
+<p>Looping with objects:</p>
+
+  <p ng-repeat="x in students track by $index  ">
+   <b>Name:</b>{{ x.name | json}}
+  </p>
+
+
+</section>
+
+<script>
+angular.module('CollectionApp', []).controller('namesCtrl', function($scope) {
+var student={
+name:'Pratibha',
+location:'Dahanu'
+};
+    $scope.students = [student,student,student];
+});
+</script>
+
+</body>
+</html>

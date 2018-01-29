@@ -1,0 +1,33 @@
+.banner {
+    font-family: arial;
+    font-size:20pt;
+    font-weight: 800;
+    color:white;
+    background-color:black;
+    letter-spacing: 5pt;
+}
+
+td, th {
+  padding : 5px;
+}
+
+th {
+    background-color:red;
+    color:white;
+    font-weight: bold;
+}
+
+.menu {
+    background-color:#eeeeee;
+    font-weight: 800;
+}
+
+.error {
+    font-weight: 800;
+    color:red;
+}
+body {
+    
+    font-family: verdana;
+    font-size:11pt;
+}

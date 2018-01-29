@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular Async</title>
+    <script src='angular.min.js'></script>
+    <script src='controller7.js'></script>
+</head>
+
+<body ng-app='main' ng-controller='MainCtrl'>
+    <br>
+    <br>
+    <center>
+        <input type="button" ng-click="populate()" value="Populate">
+    </center>
+    <br>
+    <br>
+    <table ng-show="visbileView" ng-style="myTableStyle">
+        <tr>
+            <th ng-style="myStyle">Roll No</th>
+            <th ng-style="myStyle">Name</th>
+            <th ng-style="myStyle">Age</th>
+            <th ng-style="myStyle">Email</th>
+            <th ng-style="myStyle">Date</th>
+            <th ng-style="myStyle">Gender</th>
+        </tr>
+        <tr ng-repeat="student in students">
+            <td ng-style="myStyle">{{student.rollNo}}</td>
+            <td ng-style="myStyle">{{student.name}}</td>
+            <td ng-style="myStyle">{{student.age}}</td>
+            <td ng-style="myStyle">{{student.email}}</td>
+            <td ng-style="myStyle">{{student.date}}</td>
+            <td ng-style="myStyle">{{student.isMale}}</td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <hr>
+    <center>
+        <section>
+            <h1>Add Record</h1> Roll No :
+            <input type="number" ng-model="student.rollNo">
+            <br>
+            <br> Name :
+            <input type="text" ng-model="student.name">
+            <br>
+            <br> Age :
+            <input type="number" ng-model="student.age">
+            <br>
+            <br> Email :
+            <input type="string" ng-model="student.email">
+            <br>
+            <br> Date :
+            <input type="string" ng-model="student.date">
+            <br>
+            <br> Gender
+            <input type="radio" ng-model="student.isMale" value="male"> Male
+            <input type="radio" ng-model="student.isMale" value="female"> Female
+            <br>
+            <br>
+            <input type="button" ng-click="add()" value="Add">
+        </section>
+    </center>
+</body>
+
+</html>

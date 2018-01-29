@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.js"></script>
+<body ng-app="myApp" ng-controller="myCtrl">
+			<h1 ng-repeat="x in records">{{x}}</h1>
+			<script>
+                var app = angular.module("myApp", []);
+                app.controller("myCtrl", function ($scope) {
+                    $scope.records = [ "Alfreds Futterkiste",
+                            "Berglunds snabbköp", "Centro comercial Moctezuma",
+                            "Ernst Handel", ]
+                });
+            </script>
+</body>
+</html>

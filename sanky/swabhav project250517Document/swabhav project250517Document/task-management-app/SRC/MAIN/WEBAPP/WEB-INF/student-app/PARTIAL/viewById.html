@@ -1,0 +1,25 @@
+<section id="/viewById">
+Enter id <input type="text" ng-model='textEntered'>
+    <input type="button" ng-click="showStudent()" value="search" ng-model="buttonmodel">
+    <div ng-show='buttonmodel'>
+    <table >
+    <tr><th>name</th>
+        <th>rollno</th>
+        <th>age</th>
+        <th>ismale</th>
+        <th>email</th>
+        <th>date</th>
+      
+        </tr>
+    <tr>
+        <td>{{student.name}}</td>
+        <td >{{student.rollNo}}</td>
+        <td ng-model="value" >{{student.age}}</td>
+        <td ><input type="checkbox" onclick='return false' ng-model='student.isMale' ></td>
+        <td >{{student.email}}</td>
+        <td >{{student.date}}</td>
+       
+        </tr>
+    </table>
+        </div>
+</section>

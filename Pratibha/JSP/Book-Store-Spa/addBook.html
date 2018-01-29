@@ -1,0 +1,28 @@
+<style>
+    .container {
+        width: 100%;
+    }
+</style>
+<section>
+    <p></p>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Add Book</div>
+            <div class="panel-body"> ISBN:
+                <input type="text" value="" ng-model="isbn" placeholder="Enter ISBN">
+                <br> Title :
+                <input type="text" value="" ng-model="title" placeholder="Enter Title">
+                <br> Author:
+                <input type="text" value="" ng-model="author" placeholder="Enter author">
+                <br> Image:
+                <input type="text" value="" ng-model="image" placeholder="Enter Image URL">
+                <br> Description:
+                <textarea value="" ng-model="description" placeholder="Enter Book description"></textarea>
+                <br>
+                <input type="button" value="ADD" ng-click="addBook()">
+                <a href="#/">
+                    <input type="button" value="BACK"> </a>
+            </div>
+        </div>
+    </div>
+</section>

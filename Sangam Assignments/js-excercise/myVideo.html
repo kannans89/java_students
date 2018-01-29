@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MyVideo</title>
+		<link rel="stylesheet" href="excercise.css">
+</head>
+<style>
+button
+{	
+	background-color:green;
+	color:white;
+	padding:7px;
+	border-radius:8px;
+	width:70px;
+	border:1px solid green;
+	margin-top: 10px
+}
+body
+{
+			background-color:antiquewhite;
+}
+</style>
+<body>
+	<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="myVideo.html">Video</a></li>
+				<li><a href="mailValidation.html">E-mail Validation</a></li>
+				<li><a href="mobNoValidation.html">Mobile No. Validation</a></li>
+				<li><a href="circle.html">Circle</a></li>
+				<li><a href="semantics.html">HTML5 Semantics</a></li>
+	</ul>
+	<video id="myFirstVideo" poster="image/Hydrangeas.jpg">
+		<source src="C:\inetpub\wwwroot\js-excercise\video\SampleVideo1.mp4" type="video/mp4">
+	</video>
+<div id="container">
+	<button id="play" type="button" onclick="playVideo()">Play</button>
+	<button id="pause" type="button" onclick="pauseVideo()">Pause</button>
+	<button id="volPlus" type="button" onclick="volPlus()">Vol++</button>
+	<button id="volMinus" type="button" onclick="volMinus()">Vol--</button>
+	<button id="vol" type="button" onclick="currentVol()">Volume</button>
+</div>
+    <script>
+        var video=document.getElementById("myFirstVideo");
+		var volume =video.volume;
+        function playVideo()
+        {
+            video.play();
+        }
+        function pauseVideo()
+        {
+            video.pause();
+        }
+		function volPlus()
+		{
+			if(volume >= 0.9)
+				video.volume = 1;
+			else 
+				video.volume += 0.1;
+		}
+		function volMinus()
+		{
+			if(volume <= 0.1)
+				video.volume = 0;
+			else 
+				video.volume -= 0.1;
+		}
+		function currentVol()
+		{
+			alert(video.volume);
+		}
+
+    </script>
+</body>
+</html>

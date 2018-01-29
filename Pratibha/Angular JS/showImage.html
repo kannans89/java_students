@@ -1,0 +1,29 @@
+<html>
+<script src="angular.js"></script>
+<body>
+<div ng-app="showApp" ng-controller="showCtrl">
+Click button to print data: <input type="button"  value="Click" ng-click="showData()">
+
+<p ng-show="showMe">
+Name: {{person.name}}<br>
+Country:{{person.country}}<br>
+Image:<img ng-src="{{person.image}}" alt="image">
+</p>
+<script>
+angular.module('showApp', []).controller('showCtrl', function($scope) {
+	$scope.showMe=false;
+    $scope.person = {name:'Jani',country:'Norway',image:'download.jpg'};
+	$scope.showData = function() {
+        $scope.showMe=!$scope.showMe;
+    }
+});
+//
+//Image:<img src="{{person.image}}" alt="image">
+
+</script>
+
+
+</body>
+</html>
+
+

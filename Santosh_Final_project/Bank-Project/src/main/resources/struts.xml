@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>
+<constant name="struts.devMode" value="true" />
+<constant name="struts.ui.theme" value="bootstrap"></constant>
+   <package name="default" namespace="/" extends="struts-default">
+
+		<interceptors>
+   	  	<interceptor name="loginInterceptor" 
+   	  				class="com.techlabs.interceptor.LoginInterceptor">
+   	  	</interceptor>
+   	  	<interceptor-stack name="loginStack">
+   	  		<interceptor-ref name="loginInterceptor"></interceptor-ref>
+   	  		<interceptor-ref name="defaultStack"></interceptor-ref>
+   	  	</interceptor-stack>
+   	  </interceptors>
+
+      <action name="">
+      <result>index.html</result>
+      </action>
+      
+      <action name="welcomeAction" 
+      		class="com.techlabs.action.WelcomeAction">
+      		<result name="success" type="redirect">/loginAction</result>
+      </action>
+      
+       <action name="loginAction" 
+      		class="com.techlabs.action.LoginAction">
+      		<result name="none">/WEB-INF/view/login.jsp</result>
+      		<result name="input">/WEB-INF/view/login.jsp</result>
+      		<result name="success" type="redirect">/homeAction</result>
+      		<result name="ADMIN" type="redirect">/adminAction</result>
+      		<result name="error">/WEB-INF/view/login.jsp</result>
+      </action>
+      
+       <action name="adminAction" 
+      		class="com.techlabs.action.AdminAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result name="success">/adminIndex.html</result>
+      </action>
+      
+      <action name="homeAction" 
+      		class="com.techlabs.action.HomeAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result name="success">/WEB-INF/view/home.jsp</result>
+      </action>
+      
+      <!-- <action name="getImageAction" 
+      		class="com.techlabs.action.GetImageAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result name="success">/WEB-INF/view/getImage.jsp</result>
+      </action> -->
+      
+       <action name="logoutAction"
+            class="com.techlabs.action.LoginAction" method="logout">
+            <result name="success">/WEB-INF/view/login.jsp</result>
+      </action>
+      
+      <action name="registerAction" 
+      		class="com.techlabs.action.RegisterAction">
+      		<interceptor-ref name="fileUpload">  
+                <param name="maximumSize">7097152</param>  
+                <param name="allowedTypes">image/png,image/gif,image/jpeg,image/pjpeg</param> 
+            </interceptor-ref>  
+            <interceptor-ref name="defaultStack"></interceptor-ref> 
+            <result name="input">/WEB-INF/view/register.jsp</result>
+      		<result name="none">/WEB-INF/view/register.jsp</result>
+      		<result name="success" type="redirect">/loginAction</result>
+      </action>
+      
+       <action name="forgotPasswordAction"
+            class="com.techlabs.action.ForgotPasswordAction">
+             <result name="input">/WEB-INF/view/forgotPassword.jsp</result>
+             <result name="none">/WEB-INF/view/forgotPassword.jsp</result>
+            <result name="success" type="redirect">/loginAction</result>
+      </action>
+      
+      <action name="passbookAction" 
+      		class="com.techlabs.action.PassbookAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result name="success">/WEB-INF/view/passbook.jsp</result>
+      		<result name="none">/WEB-INF/view/passbook.jsp</result>
+      </action>
+      
+      <action name="transactionAction" 
+      		class="com.techlabs.action.TransactionAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		 <result name="none">/WEB-INF/view/transaction.jsp</result>
+      		 <result name="success">/WEB-INF/view/transaction.jsp</result>
+      		 <result name="input">/WEB-INF/view/transaction.jsp</result>
+      </action>
+      
+      <action name="profileAction" 
+      		class="com.techlabs.action.ProfileAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result name="success">/WEB-INF/view/profile.jsp</result>
+      </action>
+      
+      <action name="editProfileAction" 
+      		class="com.techlabs.action.EditProfileAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="input">/WEB-INF/view/editProfile.jsp</result>
+      		<result name="login" type="redirect">/loginAction</result>
+      		 <result name="none">/WEB-INF/view/editProfile.jsp</result>
+      		 <result name="success" type="redirect">/profileAction</result>
+      </action>
+      
+       <action name="changePasswordAction" 
+      		class="com.techlabs.action.ChangePasswordAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="input">/WEB-INF/view/changePassword.jsp</result>
+      		<result name="login" type="redirect">/loginAction</result>
+      		 <result name="none">/WEB-INF/view/changePassword.jsp</result>
+      		 <result name="success" type="redirect">/profileAction</result>
+      </action>
+      
+       <action name="emailAvailabilityAction" class="com.techlabs.action.EmailAvailabilityAction"
+			method="execute">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">stream</param>
+			</result>
+		</action>
+      
+       <action name="mobileAvailabilityAction" class="com.techlabs.action.MobileAvailabilityAction"
+			method="execute">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">stream</param>
+			</result>
+		</action>
+		
+		<action name="aadharNoAvailabilityAction" class="com.techlabs.action.AadharNoAvailabilityAction"
+			method="execute">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">stream</param>
+			</result>
+		</action>
+		
+		<action name="panNoAvailabilityAction" class="com.techlabs.action.PanNoAvailabilityAction"
+			method="execute">
+			<result type="stream">
+				<param name="contentType">text/html</param>
+				<param name="inputName">stream</param>
+			</result>
+		</action>
+		
+		<action name="getAccountsAction" 
+      		class="com.techlabs.action.GetAccountsAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result>/adminIndex.html</result>
+        </action>
+        
+        <action name="changeAccountStatusAction" 
+      		class="com.techlabs.action.ChangeAccountStatusAction" method="execute">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result >/adminIndex.html</result>
+      	</action>
+    
+    	<action name="notificationAction" 
+      		class="com.techlabs.action.NotificationAction" method="execute">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result >/adminIndex.html</result>
+      	</action>
+    
+    	<action name="getAccountsStaticsAction" 
+      		class="com.techlabs.action.GetAccountsStaticsAction" method="execute">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result >/statics.html</result>
+      	</action>
+    
+    	<action name="getAdminAction" 
+      		class="com.techlabs.action.GetAdminAction">
+      		<interceptor-ref name="loginStack" />
+      		<result name="login" type="redirect">/loginAction</result>
+      		<result>/adminIndex.html</result>
+        </action>
+        
+	</package>
+	
+</struts>

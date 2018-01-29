@@ -1,0 +1,19 @@
+<section id='/add'>
+    <h1>Add Student Details</h1>
+    <table>
+    <tr><td> Name:</td><td><input type="text" ng-model="student.name"></td></tr>
+   <tr><td> RollNo:</td><td><input type="text" ng-model="student.rollno"></td></tr>
+   <tr><td> Email:</td><td><input type="email" ng-model="student.email"></td></tr>
+   <tr><td> Age:</td><td><input type="text" ng-model="student.age"></td></tr>
+        <tr><td> Date:</td><td><input type="text" ng-model="student.date"></td></tr>
+    <tr><td></td><td>
+    <input type="radio" for="true"  name="gender" ng-model="student.isMale" ng-value='true' ng-click="female()">Male</td></tr>
+        
+   
+        <tr><td></td><td><button ng-click="post()" ng-model="value">add student</button></td></tr>
+     </table>
+    <div ng-show="value">
+        <h1 style="color:green;">{{message}}</h1>
+    </div>
+    
+</section>

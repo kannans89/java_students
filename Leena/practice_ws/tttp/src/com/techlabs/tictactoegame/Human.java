@@ -1,0 +1,50 @@
+package com.techlabs.tictactoegame;
+
+	import java.util.Scanner;
+
+	public class Human extends Players{
+	    public Scanner input = new Scanner(System.in);
+	    
+	    
+	    public Human(int player){
+	       super(player);
+	        this.playerNo = player;
+	        System.out.println("Player"+playerNo+" created!");
+	    }
+	    
+	    @Override
+	    public void play(PlayingBoard board){
+	        Try(board);
+	        board.setPosition(attempt, playerNo);
+	    }
+	    
+	    @Override
+	    public void Try(PlayingBoard board){
+	        do{
+	            do{
+	                System.out.print("Line: ");
+	                attempt[0] = input.nextInt();
+	                
+	                if( attempt[0] > 3 ||attempt[0] < 1)
+	                    System.out.println("Invalid line. It's 1, 2 or 3");
+	                
+	            }while( attempt[0] > 3 ||attempt[0] < 1);
+	            
+	            do{
+	                System.out.print("Column: ");
+	                attempt[1] = input.nextInt();
+	                
+	                if(attempt[1] > 3 ||attempt[1] < 1)
+	                    System.out.println("Invalid column. É 1, 2 or 3");
+	                
+	            }while(attempt[1] > 3 ||attempt[1] < 1);
+	            
+	            attempt[0]--; 
+	            attempt[1]--;
+	            
+	            if(!checkTry(attempt, board))
+	                System.out.println("Placed already marked. Try other.");
+	        }while( !checkTry(attempt, board) );
+	    }
+	
+}

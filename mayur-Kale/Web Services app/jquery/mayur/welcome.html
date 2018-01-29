@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<title>Welcome</title>
+
+<body>
+    <h1>Welcome to Website @ Mayur</h1> Enter Guest Name:
+    <input type="text" id="guestName" placeholder="Enter name" />
+    <input type="button" value="wish" id="wish" />
+    <section id="printResult"></section>
+    <script src="jquery-3.1.0.min.js">
+    </script>
+    <script type="text/javascript">
+    $(function() {
+
+        var btnWish = $('#wish');
+        var printResult = $('#printResult');
+        var guestName = $('#guestName');
+        btnWish.click(function() {
+            printResult.text("Hello " + guestName.val());
+        });
+    });
+    </script>
+</body>
+
+</html>

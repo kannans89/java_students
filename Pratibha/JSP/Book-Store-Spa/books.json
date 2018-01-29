@@ -1,0 +1,13 @@
+[{
+    "isbn": 1001
+    , "title": "Head First Html and css"
+    , "author": "Rosbon And Eric"
+    , "image": "http://localhost/angular_app/Book-Store-Spa/img/html.jpg"
+    , "description": "Head First HTML and CSS is a thoroughly modern introduction to forward-looking practices in web page markup and presentation.It correctly anticipates readers’ puzzlements and handles them just in time.The highly graphic and incremental approach precisely mimics the best way to learn this stuff: make a small change and see it in the browser to understand what each new item means.“Head First HTML and CSS is a most entertaining book for learning how to build a great web page. It not only covers everything you need to know about HTML and CSS, it also excels in explaining everything in layman’s terms with a lot of great examples. I found the book truly enjoyable to read, and I learned something new!”"
+}, {
+    "isbn": 1002
+    , "title": "Head First JavaScript"
+    , "author": "Rosbon And Eric"
+    , "image": "http://localhost/angular_app/Book-Store-Spa/img/javascript.jpg"
+    , "description": "Head First HTML and CSS is a thoroughly modern introduction to forward-looking practices in web page markup and presentation.It correctly anticipates readers’ puzzlements and handles them just in time.The highly graphic and incremental approach precisely mimics the best way to learn this stuff: make a small change and see it in the browser to understand what each new item means.“Head First HTML and CSS is a most entertaining book for learning how to build a great web page. It not only covers everything you need to know about HTML and CSS, it also excels in explaining everything in layman’s terms with a lot of great examples. I found the book truly enjoyable to read, and I learned something new!”"
+}]

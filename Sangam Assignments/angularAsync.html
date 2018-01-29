@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="AsyncModule" ng-controller="AsyncController" style="text-align: center">
+<div></div>
+	<script>
+	angular.module('AsyncModule',[])
+	.controller('AsyncController',function($scope,$q)
+			   {
+				var getData=function()
+				{
+					return Math.random()*10;
+				}
+				var result=getData();
+				console.log(result);
+		
+				var getDataAsync=function(foo)
+				{
+					var q=$q.defer();
+					if(foo>0)
+						{
+							q.resolve(Math.random()*100);
+						}
+					else{
+						q.reject("Invalid no..");
+					}
+					return q.promise;
+				}
+				getDataAsync(-1).then(function(response)
+								   {
+					console.log(response);
+				},function(error)
+									{
+					console.log(error);
+				})
+		console.log("End of the controller");
+	});
+</script>
+</body>
+</html>

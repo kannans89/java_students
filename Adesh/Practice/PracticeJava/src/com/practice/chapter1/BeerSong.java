@@ -1,0 +1,31 @@
+package com.practice.chapter1;
+
+public class BeerSong {
+
+	public static void main(String[] args) {
+		int beerNum=9;
+		String word="Bottles";
+		
+		while(beerNum>0){
+			
+			if(beerNum==1){
+				word="Bottle";
+				System.out.println(beerNum+" "+word+" of beer on the wall");
+			}
+			else{
+			System.out.println(beerNum+" "+word+" of beer on the wall");
+			}
+			System.out.println("take one down, pass it around");
+			beerNum=beerNum-1;
+			
+			if(beerNum>0){
+				System.out.println(beerNum+" "+word+" of beer on the wall");
+			}
+			else{
+				System.out.println("no more bottles of the beer on the wall");
+			}
+
+		}
+	}
+
+}

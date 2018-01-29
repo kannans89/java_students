@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Protein Tracker</title>
+</head>
+
+<body>
+    <h1>Protein Tracker</h1>
+    <br> Amount :
+    <input type="number" id="amount">
+    <input type="button" value="Add" id="add">
+    <br>
+    <br> Total:
+    <span id="total"></span>
+    <center>
+        <input type="button" value="Settings" id="settings">
+        <br>
+        <span id="goalBlock" style="">
+        <br> Goal :
+        <input type="number" id="goal" value='0'> grams
+    	</span>
+    </center>
+    <section id="history"></section>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+    $(
+        function() {
+            var amount = $('#amount');
+            var addBtn = $('#add');
+            var totalSection = $('#total');
+            var settings = $('#settings');
+            var goalBlock = $('#goalBlock');
+            var goal = $('#goal');
+            var history = $('#history');
+            var goalValue = 0;
+            var total = 0;
+            var hitValue = 0;
+            
+            goalBlock.hide();
+            goal.change(function() {
+                goalValue = goal.val();
+                hitValue = goalValue;
+                total = 0;
+                console.log('Goal set to ' + goalValue);
+
+            });
+            settings.click(function() {
+                goalBlock.toggle();
+            });
+
+            addBtn.click(function() {
+                if (amount.val().length != 0 && amount.val() != 0) {
+
+
+                    if (hitValue > total) {
+                        goalValue -= amount.val();
+                        total += parseInt(amount.val());
+                        console.log(goalValue + '' + amount.val() + '' + total);
+                        if (hitValue != total) {
+                            totalSection.html(total + " grams").css('color', 'red');
+                            history.append("Added: " + amount.val() + " grams<br>");
+                            amount.val(0);
+                        } else
+                        if (hitValue == total) {
+                            totalSection.html(total + " grams![Goal Achieved]").css('color', 'green');
+
+                            history.append("Added: " + amount.val() + " grams!<br>");
+                            goalValue = 0;
+                            amount.val(0);
+                        }
+
+                    }
+                    if (goalValue < 0) {
+                        totalSection.html(total + " grams![Goal Exceeded]").css('color', 'red');
+
+                        history.append("Added: " + amount.val() + " grams!<br>");
+                        goalValue = 0;
+                        amount.val(0);
+
+                    }
+                }
+            });
+
+
+
+        }
+    );
+    </script>
+</body>
+
+</html>

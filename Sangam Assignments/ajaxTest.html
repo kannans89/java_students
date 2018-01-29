@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<form ng-controller="formCtrl">     
+    <input type="text" name="name" ng-model="inputValue" />
+    <button ng-click="abc(inputValue)"></button>
+</form>
+<script>
+ .controller('formCtrl', function () {
+    $scope.inputValue = null;
+    $scope.abc = function (value) {
+        console.log(value);
+    };
+});
+</script>
+</html>

@@ -1,0 +1,91 @@
+
+create table Roles
+(
+  role_id  integer primary key,
+  role_name varchar(20) not null,
+  role_desc varchar(40)
+)
+
+  insert into roles values ( 1,'admin','administraotr');
+  insert into roles values ( 2,'customer','customer');
+
+create table Users
+(
+  user_id integer primary key,
+  user_name varchar(20) not null,
+  role_id integer references Roles(role_id),
+  pwd  varchar(20) not null
+)
+
+alter table users 
+modify  user_id integer auto_increment
+
+ALTER TABLE users AUTO_INCREMENT=10;
+
+insert into users(user_name,role_id,pwd) values('sachin',1,'sachin');
+insert into users(user_name,role_id,pwd) values('rahul',2,'rahul');
+
+create table bank_master
+(
+  accno integer  primary key,
+  balance double not null,
+  sa_acc char(1) ,
+  ca_acc char(1),
+  custid int references Users(user_id)
+)
+
+
+alter table bank_master 
+modify  accno integer auto_increment;
+
+ALTER TABLE bank_master AUTO_INCREMENT=1001;
+
+insert into bank_master (balance,sa_acc,ca_acc,custid)
+values(1000,'1','0',11);
+
+create table bank_trans
+(
+  accno int not null references bank_master(accno)  ,
+  amount double not null,
+  date Date not null,
+  transtype char(1) not null ,
+  accType  char(5) not null
+
+)
+
+insert into bank_trans(accno,amount,date,transtype,accType)
+     values(1001,1000,now(),'D','SAV');
+
+select accno from bank_master where custid =11
+
+
+update bank_master
+set balance=balance+500
+where accno=1001
+
+
+-- fetch customer details
+
+select accno,user_id,user_name,pwd,balance from users
+join bank_master on users.user_id=bank_master.custid
+where user_id=11
+
+--changed with left join (Refactored code )
+
+select accno,user_id,user_name,pwd,balance from users
+left join bank_master on users.user_id=bank_master.custid
+where user_id=10
+
+-- changed for saving /current account flag
+
+select sa_acc,ca_acc,accno,user_id,user_name,pwd,balance from users
+left join bank_master on users.user_id=bank_master.custid
+where user_id=11
+
+
+
+
+
+
+
+

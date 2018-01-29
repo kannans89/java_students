@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.js"></script>
+<body>
+		<div ng-app="app" ng-controller="ctrl">
+				<p>Today's welcome message is:</p>
+				<h1>{{myWelcome}}</h1>
+		</div>
+		<p>numbers api.</p>
+		<script>
+            var app = angular.module('app', []);
+            app.controller('ctrl', function ($scope, $http) {
+                $http.get("http://numbersapi.com/79").then(function (response) {
+                    $scope.myWelcome = response.data;
+                });
+            });
+        </script>
+</body>
+</html>

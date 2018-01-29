@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>TicTacGame</title>
+		<link rel="stylesheet" type="text/css" href="tic_css.css">
+		<link rel="stylesheet" type="text/css" href="draw.css">
+		<style type="text/css">
+		input
+		{
+			width: 100px;
+			height: 100px;
+			background-color: #ADE1F2;
+			font-size: 1px;
+			background-image: url("b3.jpg");
+			background-repeat: no-repeat;
+			color: white;
+			border: none;
+		}
+		body{
+			background-image: url("blue_5.jpg");
+			background-repeat: no-repeat;
+		}
+		h1{
+			font-size: 40px;
+			font-family: sans-serif;
+			color: #4C7DD8
+		}
+		#box{
+			right: 2%;
+
+		}
+		@font-face{
+			font-family: boldCaly;
+			src:url("fonts/Bold&StylishCalligraphy.ttf").format("truetype");
+
+		}
+		h1{
+			font-family: boldCaly;
+		}
+		</style>
+	</head>
+	<body>
+		<!--  <a href="index.html"  style="display: block;background: #AEEBED;padding: 5px 10px 5px 10px;color: #0E2287;">HOME</a> -->
+			<div class="popup"  onclick="myFunction()">
+			<div class="popuptext" id="myPopup"><center><img src="giphy.webp" style="background-position: center;"></center></div>
+			<!-- <div class="model"  onclick="draw()">
+			<div class="model_bg" id="drawId"><center>draw</center></div> -->
+		</div>
+		<div id="box" align="center"><br><br><br><br><br><br><br>
+			<h1 style="font-family:'boldCaly' "><i><b>TIC TAC TOE</b></i></h1>
+			<table>
+				<tr>
+					<td><input id="0" type ="button" onclick="check(id)" value="1"></td>
+					<td><input id="1" type ="button" onclick="check(id)" value="2"></td>
+					<td><input id="2" type ="button" onclick="check(id)" value="3"></td>
+				</tr>
+				<tr>
+					<td><input id="3" type ="button" onclick="check(id)" value="4"></td>
+					<td><input id="4" type ="button" onclick="check(id)" value="5"></td>
+					<td><input id="5" type ="button" onclick="check(id)" value="6"></td>
+				</tr>
+				<tr>
+					<td><input id="6" type ="button" onclick="check(id)" value="7"></td>
+					<td><input id="7" type ="button" onclick="check(id)" value="8"></td>
+					<td><input id="8" type ="button" onclick="check(id)" value="9"></td>
+				</tr>
+			</table>
+		</div>
+		<dialog id="wins" style="width:50%;background-color:#F4FFEF;border:1px dotted black">
+		<h1>--------you win-------</h1>
+		
+		</dialog>
+		<script type="text/javascript">
+		var m=1;
+		markCell();
+		function check(i) {
+			var count=1;
+			var property=document.getElementById(i);
+				if(property.value!="X" && property.value!="O"){
+					if(m==1){
+						
+						property.style.backgroundColor = 'red';
+						property.style.fontSize = '60px';
+						property.value="X";
+						m=0;
+					}else{
+						property.style.fontSize = '60px';
+						property.style.backgroundColor = 'green';
+						property.value="O";
+						m=1;
+					}
+					
+					
+					markCell();
+					if (hasWins()) {
+						myFunction();
+						// alert("----you win the game-----");
+						// (alert("----you win the game-----");
+						// (window.location.reload());
+					}
+					if (hasDraws()) {
+						// draw();
+						alert("----draws---");
+						window.location.reload();
+					}
+					// console.log(hasWins());
+				}
+			
+		}
+		function markCell() {
+			// body...
+			cells=[
+			[document.getElementById("0").value,
+			document.getElementById("1").value,
+			document.getElementById("2").value],
+			[document.getElementById("3").value,
+			document.getElementById("4").value,
+			document.getElementById("5").value],
+			[document.getElementById("6").value,
+			document.getElementById("7").value,
+			document.getElementById("8").value]
+			];
+				// console.log(cells[1][1]);
+			}
+				// console.log(cells[1][1]);
+				
+				function hasWins() {
+					return isHorizonatlyInLine() || isVerticalyInLine() || isDigonalyInLine();
+				}
+				function  hasDraws() {
+					for (var i = 0; i < 3; i++) {
+						for (var j = 0; j < 3; j++) {
+							if (cells[i][j] != "X" && cells[i][j] != "O") {
+								return false;
+							} else {
+								if (i == 3 - 1 && j == 3 - 1) {
+									return true;
+								}
+							}
+						}
+					}
+					return false;
+				}
+				function isHorizonatlyInLine() {
+					for (var i = 0; i < 3; i++) {
+						for (var j = 0; j < 3 - 1; j++) {
+							if (this.cells[i][j] != this.cells[i][j + 1]) {
+								break;
+							}
+							if (j == 3 - 2) {
+								return true;
+							}
+						}
+					}
+					return false;
+				}
+				function isVerticalyInLine() {
+					for (var i = 0; i < 3; i++) {
+						for (var j = 0; j < 3-1; j++) {
+							if (cells[j][i] != cells[j+1][i]) {
+								break;
+							}
+							if (j == 3 - 2) {
+								return true;
+							}
+						}
+					}
+					return false;
+				}
+				function isDigonalyInLine() {
+					for (var i = 0; i < 3 - 1; i++) {
+						if (cells[i][i] != cells[i + 1][i + 1]) {
+							break;
+						}
+						if (i == 3 - 2) {
+							return true;
+						}
+					}
+					var j= 3 - 1;
+					for(var i = 0;i < 2; i++, j--){
+						if (cells[i][j] != cells[i + 1][j - 1]) {
+							break;
+						}
+						if (i == 3 - 2) {
+							return true;
+						}
+					}
+					return false;
+					
+					
+				}
+		</script>
+
+		
+		<script>
+	
+		function myFunction() {
+		var popup = document.getElementById("myPopup");
+		popup.classList.toggle("show");
+		setTimeout(retart, 3000);
+		
+		}
+
+		function draw() {
+		var popup = document.getElementById("drawId");
+		popup.classList.toggle("show");
+		setTimeout(retart, 3000);
+		}
+
+		function retart(){
+			window.location.reload();
+			
+		}
+		</script>
+	</body>
+</html>

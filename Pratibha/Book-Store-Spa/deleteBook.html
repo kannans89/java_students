@@ -1,0 +1,28 @@
+<style>
+    .container {
+        width: 100%;
+    }
+</style>
+<section>
+    <p></p>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Delete Book</div>
+            <div class="panel-body" ng-repeat="x in delete"> ISBN:
+                <input type="text" value="{{x.isbn}}">
+                <br> Title :
+                <input type="text" value="{{x.title}}">
+                <br> Author:
+                <input type="text" value="{{x.author}}">
+                <br> Image:
+                <input type="text" value="{{x.image}}">
+                <br> Description:
+                <textarea type="text" value="">{{x.description}}</textarea>
+                <br>
+                <input type="button" value="Delete" ng-click="deleteBook()">
+                <a href="#/">
+                    <input type="button" value="BACK"> </a>
+            </div>
+        </div>
+    </div>
+</section>

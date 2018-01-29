@@ -1,0 +1,21 @@
+<br><br>
+<div class="col-md-4 col-sm-12"><img ng-src="{{showBook.IMAGE}} " width="500px" ><br><br></div>
+<div class="col-md-6 col-sm-12">
+	<b>{{showBook.TITLE}} </b>
+	<br><b>Price Rs.</b> {{showBook.PRICE}}
+	
+	<br><b>ISBN :</b> {{showBook.ISBN}}
+	<br><b>Author :</b> {{showBook.AUTHOR}}
+	<br><b>Paperback: </b>{{showBook.Paperback}}
+	<br><b>Publisher: </b>{{showBook.Publisher}}
+	<br><b>Language: </b>{{showBook.Language}}
+	<br><b>ProductDimensions: </b>{{showBook.ProductDimensions}}
+	<br>descreption:<br>
+	
+	<ng-include src="showBook.DESCREPTION"></ng-include>
+</div>
+<div class="col-md-2 col-sm-12" >
+	<a class="edit" ng-click="show($index)" href="#!editBook" >EDIT DETAILS</a>
+
+</div>
+</div>

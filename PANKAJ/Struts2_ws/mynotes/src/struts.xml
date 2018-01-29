@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+ 
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+        
+        <action name="*Opt" method="{1}" class="action.MenuAction">
+            <result name="login" type="tiles">login</result>
+            <result name="forgot" type="tiles">forgot</result>
+            <result name="register" type="tiles">register</result>
+            <result name="home"  type="tiles">home</result>
+            <result name="search" type="tiles">search</result>
+            <result name="changePassword" type="tiles">changePassword</result>
+            <result name="add" type="tiles">add</result>
+        </action>
+        
+        <action name="login" class="action.LoginAction">
+            <result name="success" type="redirect">home</result>
+            <result name="failure" type="tiles">login</result>
+        </action>
+        
+         <action name="logout" class="action.LogoutAction">
+            <result name="success" type="tiles">login</result>
+        </action>
+        
+        
+        <action name="forgot" class="action.ForgotAction">
+            <result name="success" type="tiles">forgot</result>
+            <result name="error" type="tiles">forgot</result>
+        </action>
+        
+        
+        <action name="register" class="action.RegisterAction">
+            <result name="success" type="tiles">register</result>
+            <result name="failure" type="tiles">register</result>
+            <result name="input" type="tiles">register</result>
+        </action>
+        
+        <action name="home" class="action.HomeAction">
+            <result name="success" type="tiles">home</result>
+        </action>
+        
+        <action name="changePassword" class="action.ChangePasswordAction">
+            <result name="success" type="tiles">changePassword</result>
+            <result name="error" type="tiles">changePassword</result>
+        </action>
+        
+        
+        <action name="add" class="action.AddAction">
+            <result name="success" type="redirect">home</result>
+            <result name="error" type="tiles">add</result>
+        </action>
+        
+         <action name="search" class="action.SearchAction">
+            <result name="success" type="tiles">search</result>
+        </action>
+        
+        <action name="update" class="action.UpdateAction">
+            <result name="success" type="redirect">home</result>
+            <result name="error" type="tiles">edit</result>
+            <result name="input" type="tiles">edit</result>            
+        </action>
+        
+        
+        <action name="edit" class="action.EditAction">
+            <result name="success" type="tiles">edit</result>
+        </action>
+        
+    </package>
+</struts>

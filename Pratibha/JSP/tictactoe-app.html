@@ -1,0 +1,173 @@
+<html>
+
+<head>
+    <script type="text/javascript">
+        var id = 0;
+        var isWin = false;
+        var win1 = "";
+        var win2 = "";
+        var raw;
+        var gmaeno = 1;
+
+        function makeBoard() {
+            console.log("inside makeBoard");
+            if (sessionStorage.getItem("gameNo") == null) {
+                sessionStorage.setItem("gameNo", 1);
+                sessionStorage.setItem("player1", 0);
+                sessionStorage.setItem("player2", 0);
+            } else {
+                sessionStorage.setItem("gameNo", Number(sessionStorage.getItem("gameNo")) + 1);
+
+            }
+            document.getElementById("div2").innerHTML = "<h2><font color='blue'>Game no:" + sessionStorage.getItem("gameNo") + "<br>Plyer1-Score: " + sessionStorage.getItem("player1") +
+                "<br>Payer2-Score: " + sessionStorage.getItem("player2") + "</font></h2>";
+            var count = 1;
+            var table = "";
+            var j, k, i;
+            raw = Number(document.getElementById("txt").value);
+            for (j = 1; j <= raw; j++) {
+                table = table + "<tr>";
+                for (k = 1; k <= raw; k++) {
+                    table = table + "<td id='" + count + "'name='td' class='" +
+                        count + "' value='" + count + "' onclick='play()'>" + count + "</td>";
+                    count += 1;
+                }
+                table = table + "</tr>";
+                win1 = win1 + "X";
+                win2 = win2 + "O";
+            }
+
+
+            table = table + "";
+            document.getElementById("table").innerHTML = table;
+            document.getElementById("div").innerHTML = "<p><input type='button' value='Play again' onclick=' window.location.reload(true);' />                     <input type='button' value='Exit' onclick='exit();' /></p>";
+            console.log(typeof(table));
+            console.log(win1 + " " + win2);
+            document.getElementById("button").disabled = true;
+        }
+
+        function play() {
+            var s3 = "";
+            var s4 = "";
+            var k = 0;
+            if (window.event.target.innerHTML == "X" || window.event.target.innerHTML == "O")
+                return;
+            else {
+                id += 1;
+                var tdid = window.event.target.id;
+                // console.log(typeof(tdid));
+                if (id % 2 == 0) {
+                    document.getElementById(tdid).innerHTML = "X";
+                    window.event.target.style.color = "red";
+                } else {
+                    document.getElementById(tdid).innerHTML = "O";
+                    window.event.target.style.color = "red";
+                }
+                console.log(typeof(raw));
+                for (i = 1; i <= raw; i++) {
+                    var s1 = "";
+                    var s2 = "";
+                    try {
+                        s3 = s3 + document.getElementById((((raw + 1) * (i - 1)) + 1)).innerHTML;
+                    } catch (e) {}
+                    try {
+                        s4 = s4 + document.getElementById((raw * i) - (i - 1)).innerHTML;
+                    } catch (e) {}
+                    for (j = 1; j <= raw; j++) {
+                        try {
+                            s1 = s1 + document.getElementById((j + k)).innerHTML;
+                        } catch (e) {}
+                        try {
+                            s2 = s2 + document.getElementById(((raw * (j - 1)) + (1 + (i - 1)))).innerHTML;
+                        } catch (e) {}
+                    }
+                    k = k + raw;
+                    console.log(s1);
+                    console.log(s2);
+                    if (s1 == win1 || s1 == win2 || s2 == win1 || s2 == win2) {
+                        getWinner();
+                    }
+                }
+                console.log(s3);
+                console.log(s4);
+                console.log(s1 == win1);
+                console.log(s1 == win2);
+                if (s3 == win1 || s3 == win2 || s4 == win1 || s4 == win2) {
+                    getWinner();
+                } else {
+                    if (id == raw * raw) {
+                        setTimeout(function() {
+
+                            alert("Game is drawn");
+                            window.location.reload(true);
+                        }, 100);
+
+                    }
+                }
+            }
+        };
+
+        function getWinner() {
+            if (id % 2 == 0) {
+                setTimeout(function() {
+                    sessionStorage.setItem("player2", Number(sessionStorage.getItem("player2")) + 1);
+                    alert("Player2 is winner ");
+                    window.location.reload(true);
+                }, 100);
+
+            } else {
+                setTimeout(function() {
+                    sessionStorage.setItem("player1", Number(sessionStorage.getItem("player1")) + 1);
+                    alert("Player1 is winner");
+                    window.location.reload(true);
+                }, 100);
+
+            }
+
+        }
+
+        function exit() {
+            window.close();
+        }
+
+    </script>
+
+    <style>
+        body {
+            background-color: pink
+        }
+        
+        table {
+            border-width: thick;
+            border-color: black;
+            background-color: black;
+            color: green;
+        }
+        
+        td {
+            padding: 10px;
+        }
+        
+        td {
+            background-color: green;
+        }
+
+    </style>
+
+
+</head>
+
+<body align="center"><br><br><br>
+    <h1>
+        <font color="blue">WELCOME TO TIC-TAC-TOE GAME</font>
+    </h1>
+    <input type="text" name="txt" id="txt" class="txt" /><input type="button" id="button" name="button" Value="Enter number of raws" onclick="makeBoard()" /><br><br>
+    <table align="center" id="table"></table><br>
+    <div id="div2" color="blue">
+
+    </div>
+    <div id="div" name="div">
+    </div><br>
+</body>
+
+</html>

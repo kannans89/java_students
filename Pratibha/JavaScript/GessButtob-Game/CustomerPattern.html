@@ -1,0 +1,22 @@
+<html>
+<head>
+<script>
+function Customer(pid,pfname,plname){
+this.id=pid;
+this.fname=pfname;
+this.lname=plname;
+this.getFullName=function(){
+return this.fname+" "+this.lname;
+}
+}
+var c1=new Customer(10,"Pratibha","Dhodi");
+console.log(c1.id);
+//console.log(c1.getFullName);
+console.log(c1.getFullName());
+c1.id=20;
+console.log(c1.id);
+
+
+</script>
+</head>
+</html>

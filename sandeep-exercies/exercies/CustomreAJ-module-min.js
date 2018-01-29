@@ -1,0 +1,1 @@
+angular.module("swabhav.module.A",[]),angular.module("swabhav.module.A").controller("InvoiceCtrl",function(e,a){e.invoice={id:"101",date:"10/2/2017"}}),angular.module("swabhav.module.A").controller("CustomerCtrl",function(e,a){e.custmore={fName:"sandeep",lName:"gade"}});

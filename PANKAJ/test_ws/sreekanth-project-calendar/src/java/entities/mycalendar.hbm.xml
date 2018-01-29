@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="entities.User" table="USERS">
+      <id name="username"  column="username">
+          <generator  class="assigned" />
+      </id>
+      <property name="password" column="password" />
+      <property name="email" column="email" />
+  </class>
+  
+   <class name="entities.Event" table="EVENTS">
+      <id name="eventid"  column="eventid" type="integer" >
+          <generator  class="sequence">
+               <param name="sequence">eventid_sequence</param>
+          </generator>
+      </id>
+      <property name="title" column="title"/>
+      <property name="date" column="eventdate"/>
+      <property name="time" column="eventtime"/>
+      <many-to-one
+              class="entities.User" 
+              name="user" column="username" />
+  </class>
+</hibernate-mapping>

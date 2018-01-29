@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Understanding Jquery selector</title>
+</head>
+
+<body>
+    <h1>Understanding Jquery selector</h1>
+    <p class="group">Click Me</p>
+    <p id="hello">Hello</p>
+    <p class="group">Hello HTML</p>
+    <input type="button" id="click" value="Click">
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript">
+    $(
+
+        function() {
+            $('#click').click(function() {
+                $('.class').html("Hello Class");
+                $('#hello').html("Hello id");
+                $(this).css("background-color", "red");
+
+            });
+
+        });
+    </script>
+</body>
+
+</html>

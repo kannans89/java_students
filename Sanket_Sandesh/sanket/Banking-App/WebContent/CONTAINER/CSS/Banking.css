@@ -1,0 +1,108 @@
+.customDiv {
+    margin: 3px;
+    min-height: 200px;
+    background-color: silver;
+    text-align: center;
+    font-size: large;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    width: 80%;
+    padding-left: 20%;
+}
+
+body {
+	background-color: black;
+	background-image: url("background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.menuDiv {
+	border-top: 3px solid black;
+	width: 100%;
+	height: 60px;
+	background-color: #F4F6F6;
+}
+
+.logoDiv {
+	width: 100%;
+	height: 80px;
+	background-color: white;
+}
+
+.logo{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:60px;
+	text-align: center;
+}
+
+.transBlockGray {
+	background-color: rgba(23, 32, 42, 0.5 );
+	width: 100%;
+}
+
+.transBlockWhite {
+	background-color: rgba(253, 254, 254, 0.7 );
+	width: 100%;
+}
+
+.transBlockWhite1 {
+	background-color: rgba(253, 254, 254, 0.1 );
+	width: 100%;
+}
+
+.heading1 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 80px;
+	text-align: center;
+	color: black;
+}
+
+.heading2 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 60px;
+	text-align: center;
+}
+
+.heading3 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 40px;
+	text-align: center;
+}
+
+.heading4 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 30px;
+	text-align: center;
+}
+
+.heading5 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.errorSmall{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 20px;
+	text-align: center;
+	color: red;
+}
+
+.menuButton {
+	float : right;
+	background-color: rgba(51, 178, 255, 0.5);
+	color:black;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 7px;
+	margin-bottom: 2px;
+	margin-right: 3%;
+	border: 1px solid black;
+}
+
+.menuButton:hover {
+	text-decoration: none;
+	background-color: rgba(51, 178, 255, 0.6);
+	border: none;
+}

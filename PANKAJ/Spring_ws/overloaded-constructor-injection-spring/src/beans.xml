@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="emp1" class="com.techlabs.overloaded.constructor.injection.Employee">
+		<constructor-arg>
+			<value>Sachin</value>
+		</constructor-arg>
+	</bean>
+
+	<bean name="emp2" class="com.techlabs.overloaded.constructor.injection.Employee">
+		<constructor-arg>
+			<value>Pankaj</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>p@p.com</value>
+		</constructor-arg>
+	</bean>
+
+	<bean name="emp3" class="com.techlabs.overloaded.constructor.injection.Employee">
+		<constructor-arg>
+			<value>Rahul</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>rahul@tt.com</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>i reside here</value>
+		</constructor-arg>
+	</bean>
+</beans>

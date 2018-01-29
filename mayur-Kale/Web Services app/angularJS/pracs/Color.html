@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Color</title>
+    <script src="angular.min.js"></script>
+</head>
+
+<body ng-app='' ng-style="myColor">
+    Color Picker
+    <select ng-click="myColor={'background':colorValue}" ng-model='colorValue'>
+        <option value="white">White</option>
+        <option value="#FF0000">Red</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#00FF00">Green</option>
+    </select>
+    <br> You have selected {{colorValue}} color!
+ 
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<div ng-controller='LoginCtrl'>
+    <h1>Login Form</h1>
+    <form name="login" action="/">
+        UserName :
+        <br>
+        <input type="text" name="name" ng-model="name">
+        <span ng-bind="nameAlert" style="color:red"></span>
+        <br> Password :
+        <br>
+        <input ng-model="pwd" type="password" name="password">
+        <span ng-bind="passwordAlert" style="color:red"></span>
+        <br>
+        <input type="button" value="Submit" ng-click="submit()">
+    </form>
+</div>

@@ -1,0 +1,330 @@
+<html>
+<head>
+<script src="jquery-3.2.1.js"></script>
+    
+    
+<script>
+$(document).ready(function(){
+    var deleteID;
+var spinner;
+
+ spinner = $("#delay");
+                spinner.hide();
+$("#searchbtn").click(function(){search();});
+$("#addbtn").click(function(){
+	var valid=validateform();
+	if(valid==true){
+            $(this).attr('disabled',true);
+			domReady();
+	}
+	});
+
+ $("#updatebtn").click(function(){updateData();});
+               
+               
+var info;
+var deleteStudent=new Array();
+var searchData=new Array();
+getData();
+function domReady() {
+                spinner.show();
+                setTimeout(function(){
+				sendData();
+				spinner.hide();
+                    $("#addbtn").attr('disabled',false);
+                    
+                    },5000);
+            }
+
+           
+            
+
+function sendData(){
+    var gender="";
+    if($("#ismale").val()=="Male")
+        gender="true";
+    else
+        gender="false"
+	   var student ={age : $("#age").val(),
+			date:$("#date").val(),
+			email:$("#email").val(),
+			name: $("#name").val(),
+			rollNo :$("#rollno").val(),
+			isMale:gender};
+
+	$.ajax({
+           type: "POST",
+           url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
+           dataType: "json",
+           success: function (msg) {
+               if (msg) {
+                   console.log("inside sendData()");
+                   console.log("Somebody" + name + " was added in list !");
+                   location.reload(true);
+               } else {
+                   console.log("Cannot add to list !");
+               }
+           },
+			data: student
+       });
+    
+    getData();
+}
+
+function getData(){
+var studentData=new Array();
+$.ajax({
+	type:"GET",
+  url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
+  dataType : 'json',
+  success: function(data) {
+    //called when successful
+	info=data;
+    console.log(data.length);
+      displayData(info);
+
+  },
+  error: function(e) {
+    //called when there is an error
+    console.log(e.message);
+  }
+
+});
+
+}
+
+
+function search(){
+var counter=0;
+var str=$("#search").val();
+console.log(str);
+for(var i=0;i<info.length;i++){
+if(info[i].rollNo==str ){
+searchData[counter]=info[i];
+counter+=1;
+}
+}
+    if(searchData.length>=1){
+    $("#age").val(searchData[0].age);
+       var rdate= reverseString(searchData[0].date);
+        console.log(searchData[0].date)
+        console.log(rdate);
+    $("#date").val(searchData[0].date);
+    $("#email").val(searchData[0].email);
+    $("#name").val(searchData[0].name);
+    $("#rollno").val(searchData[0].rollNo);
+        if(searchData[0].isMale=="true")
+          document.getElementById("male").checked = true; 
+
+        else
+                  document.getElementById("female").checked = true; 
+
+    }
+
+displayData(searchData);
+}
+    
+    function reverseString(str) {
+    return str.charAt(6)+str.charAt(7)+str.charAt(8)+str.charAt(9)+"-"+str.charAt(3)+str.charAt(4)+"-"+str.charAt(0)+str.charAt(1);
+	
+}
+
+function deleteData(id){
+var str=id;
+console.log(str);
+delete_post(str);
+
+
+
+}
+
+    
+/*
+$("button").click(function(){
+    console.log("hi");
+    if (confirm("Are you sure?")) 
+        delete_post($deleteID);
+    
+});
+*/
+function delete_post(deleteStudent) {
+
+            var url="http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/"+deleteStudent;
+    
+            console.log(deleteStudent);
+            $.ajax({
+                url: url,
+				method:"delete",
+				dataType: "json",
+                
+                success: function(json){
+                    console.log("It works!")
+                },
+                error: function(data) {
+                    console.log( data);
+                    console.log(this.url);
+                }
+
+            });
+        
+    getData();
+    getData();
+        }
+function updateData() {
+         var gender="";
+    if($("#ismale").val()=="Male")
+        gender="true";
+    else
+        gender="false"
+	   var student ={age : $("#age").val(),
+			date:$("#date").val(),
+			email:$("#email").val(),
+			name: $("#name").val(),
+			rollNo :$("#rollno").val(),
+			isMale:gender};
+            
+
+            var uid=$("#search").val();
+           console.log(uid);
+            console.log(student.age);
+            $.ajax({
+                url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/"+uid,
+				method:"PUT",
+				dataType: "json",
+                data: {rollNo:student.rollNo,name:student.name,age:student.age,email:student.email,date:student.date,isMale:student.isMale},
+                success: function(json){
+                    console.log("It works!")
+                },
+                error: function(data) {
+                    console.log("Something went wrong" + data);
+                        
+
+                }
+
+            });
+    
+    getData();
+        }
+
+
+       
+
+function  displayData(studentinfo){
+var Data=studentinfo;
+    console.log(Data.length);
+var table,stud1="";
+	table="<table class="+"'table table-hover'"+"><tr><th>Name</th><th>RollNo</th><th>Age</th><th>Gender</th><th>Email</th><th>Date</th><th>Delete </th></tr>";
+	for(var i=0;i<Data.length;i++){
+	var div = document.createElement('button');
+	//button.id = Data[i].rollNo;
+        var gender="";
+        if(Data[i].isMale==true)
+            gender="Male";
+        else
+            gender="female";
+	stud1=stud1+"<tr><td>"+Data[i].name+"</td><td>"+Data[i].rollNo+"</td><td>"+Data[i].age
+		  +"</td><td>"+gender+"</td><td>"+Data[i].email+"</td><td>"+Data[i].date+"</td>"+
+		  "<td><button class='delete' id='"+Data[i].rollNo+"' value='"+Data[i].rollNo+"' name='button'>"+Data[i].rollNo+"</button></td></tr>";
+		  $(".delete").val(Data[i].rollNo);
+		  
+		  
+		 
+	}
+	
+	table=table+stud1+"</table>";
+	document.getElementById("div1").innerHTML=table;
+  // console.log( $("#105").text());
+/* $("#102").click(function(){
+alert(this.id);
+});*/
+$(".delete").click(function(){
+    //var id=$(this.val());
+    console.log(this.id);
+  var  id=this.id;
+	deleteData(this.id);
+	return false;
+   	});
+
+
+
+   
+}
+
+
+
+
+/* $("#deletebtn").click(function () {
+            deleteItem();
+           
+        });
+        */
+
+function validateform(){    
+  
+if($("#name").val()=="" || $("#rollno").val()=="" || $("#age").val()<0 ||
+	$(".ismale").val()=="" || $("#date").val()=="" || $("#email").val()==""){  
+  alert("Fill all the fields");  
+  return false;  
+}
+if(isNaN($("#age").val())){
+alert("age must be numeric ")
+return false;
+}
+if(isNaN($("#rollno").val())){
+alert("age must be numeric ")
+return false;
+}
+
+
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+if(!document.getElementById("email").value.match(mailformat))  
+{   alert("Enter a vilid email.");
+return false;  
+}    
+  return true;
+}  
+
+});
+</script>
+<style>
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+.divimg {visibility:disabled;}
+   
+</style>
+</head>
+<body>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<form class="form-inline">
+<pre>
+<input type="text" id="search" class="form-control" aria-describedby="helpBlock"/>  <input type="button" id="searchbtn" value="Search" class="btn btn-default"/><input type="button" id="updatebtn" value="Update"  class="btn btn-default" />
+
+Name:        <input type="text" id="name" class="form-control"/>         
+Roll Number: <input type="text" id="rollno" class="form-control" aria-describedby="helpBlock" />
+Age:         <input type="text" id="age" class="form-control" aria-describedby="helpBlock"/>
+Gender      <input type="radio" name="ismale" class="ismale" id="male" />Male
+             <input type="radio" name="ismale" class="ismale" id="female" />Female<br>
+Email:       <input type="email" id="email" class="form-control" aria-describedby="helpBlock" /><br>
+Date:        <input type="date" id="date" class="form-control" aria-describedby="helpBlock"/><br><br>
+
+<input type="button" id="addbtn" value="Add Student"  class="btn btn-default"/> <div class="divimg"> <img src="spinner.gif" id="delay" width="80" height="80" >
+</div>    
+
+
+</pre>
+<div id="div1"></div>
+</form>
+
+</body>
+</html>

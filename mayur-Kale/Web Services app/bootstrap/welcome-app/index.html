@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width , initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Home</title>
+    <style type="text/css">
+    .navbar-nav li a:hover,
+    .navbar-nav li.active a {
+        color: #f4511e !important;
+        background-color: #fff !important;
+    }
+    
+    #about {
+        background-color: #F4511E;
+        padding: 100px 25px;
+        color: white;
+    }
+    
+    #service {
+        background-color: #fff;
+        padding: 90px 25px;
+    }
+    
+    #contact {
+        background-color: #fff;
+        padding: 70px 25px;
+    }
+    
+    .logo-small {
+        color: #f4511e;
+        font-size: 50px;
+        padding: 10px 0px 20px 0px;
+    }
+    
+    .contact-logo-small {
+        color: #222222;
+        font-size: 30px;
+        padding: 10px 0px 20px 0px
+    }
+    
+    .thumbnails {
+        padding: 0px 0px;
+    }
+    
+    .overlay h5 {
+        font-size: 20px;
+        color: #fff;
+        opacity: 1;
+    }
+    
+    .overlay h4 {
+        color: #fff;
+        font-size: 30px;
+        opacity: 1;
+    }
+    
+    .thumbnails >img:hover {
+        background-color: #f4511e;
+        content: 'Hi';
+        opacity: 0.5;
+    }
+    
+    .overlay {
+        position: absolute;
+        text-align: center;
+        top: 0;
+        left: 0px;
+        visibility: hidden;
+        color: #fff;
+        width: 100%;
+    }
+    
+    #portfolio {
+        background-color: #222222;
+        padding: 100px 25px;
+        color: #fff;
+    }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#myNavbar">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background:#fff;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#myMain">
+                    <span style="color:red">START BOOTSTRAP</span>
+                </a>
+            </div>
+            <div id="myNavbar" class="navbar-collapse collaspse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#about"><b>ABOUT</b></a></li>
+                    <li><a href="#service"><b>SERVICES</b></a></li>
+                    <li><a href="#portfolio"><b>PORTFOLIO</b></a></li>
+                    <li><a href="#contact"><b>CONTACT</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="about" class="jumbotron text-center scroll">
+        <h2>We've got what you need!</h2>
+        <span style="font-size: 30px">____</span>
+        <p>Start Bootstrap has everything you need to get your new website up and running to no time!
+            <br>All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use.
+            <br>No strings attached!</p>
+        <button type="button" class="btn btn-default" style="border-radius: 20px;padding:10px 29px"><b>GET STARTED!</b></button>
+    </div>
+    <div id="service" class="jumbotron text-center scroll">
+        <h2>At Your Service</h2>
+        <span style="font-size: 30px ;color:#F4511E;">___</span>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <span class="glyphicon glyphicon-grain logo-small"></span>
+                <h3>Sturdy Templates <br> 
+                <small>Our templates are updated <br> regularly so they don't break.</small></h3>
+            </div>
+            <div class="col-sm-3">
+                <span class="glyphicon glyphicon-send logo-small"></span>
+                <h3>Ready to Ship<br> 
+                <small>You can use this theme as is, or<br>you can make changes!</small></h3>
+            </div>
+            <div class="col-sm-3">
+                <span class="glyphicon glyphicon-list-alt logo-small"></span>
+                <h3>Up to Date<br> 
+                <small>We update dependencies to keep<br>things fresh.</small></h3>
+            </div>
+            <div class="col-sm-3">
+                <span class="glyphicon glyphicon-heart logo-small"></span>
+                <h3>Made with Love<br> 
+                <small>You have to make your websites <br>with love these days!</small></h3>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid thumbnail-style">
+        <div class="row">
+            <div class="thumbnails col-sm-4 col-xs-6">
+                <span class="overlay text-center">
+                    <br><br>
+                    <b><h5>CATEGORY</h5></b>
+                    <b><h4>Project Name</h4></b>    
+                </span>
+                <img src="../img/portfolio/thumbnails/1.jpg" class="img-responsive">
+            </div>
+            <div class="col-sm-4 col-xs-6 thumbnails">
+                <span class="overlay text-center">
+                    <br><br>
+                    <b><h5>CATEGORY</h5></b>
+                    <b><h4>Project Name</h4></b>    
+                </span>
+                <img src="../img/portfolio/thumbnails/2.jpg" class="img-responsive">
+            </div>
+            <div class="col-sm-4 col-xs-6 thumbnails">
+                <span class="overlay text-center">
+                    <br><br>
+                    <b><h5>CATEGORY</h5></b>
+                    <b><h4>Project Name</h4></b>    
+                </span>
+                <img src="../img/portfolio/thumbnails/3.jpg" class="img-responsive">
+            </div>
+            <div class="col-sm-4 col-xs-6 thumbnails">
+                <span class="overlay text-center">
+                    <br><br>
+                    <b><h5>CATEGORY</h5></b>
+                    <b><h4>Project Name</h4></b>    
+                </span>
+                <img src="../img/portfolio/thumbnails/4.jpg" class="img-responsive">
+            </div>
+            <div class="col-sm-4 col-xs-6 thumbnails">
+                <span class="overlay text-center">
+                    <br><br>
+                    <b><h5>CATEGORY</h5></b>
+                    <b><h4>Project Name</h4></b>    
+                </span>
+                <img src="../img/portfolio/thumbnails/5.jpg" class="img-responsive">
+            </div>
+            <div class="col-sm-4 col-xs-6 thumbnails">
+                <span class="overlay text-center">
+                    <br><br>
+                    <b><h5>CATEGORY</h5></b>
+                    <b><h4>Project Name</h4></b>    
+                </span>
+                <img src="../img/portfolio/thumbnails/6.jpg" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron text-center scroll" id="portfolio">
+        <h2>Free Download at Start Bootstrap!</h2>
+        <button type="button" class="btn btn-default" style="border-radius: 20px;padding:10px 29px"><b>DOWNLOAD NOW!</b></button>
+    </div>
+    <div class="jumbotron container text-center scroll" id="contact">
+        <h2>Let's Get In Touch!</h2>
+        <span style="font-size: 30px ;color:#F4511E;">___</span>
+        <br>
+        <br>
+        <p>Ready to start your next project with us? That's great! Give us a call or send us an email and
+            <br>we will get back to you as soon as possible!</p>
+        <br>
+        <div class="row center-block">
+            <div class="col-sm-6 ">
+                <span class="glyphicon glyphicon-earphone contact-logo-small">
+            <h4>123-456-6789</h4>
+        </div>
+        <div class="col-sm-6">
+            <span class="glyphicon glyphicon-envelope contact-logo-small">
+            <h4 style="color:#f4511e;">feedback@startbootstrap.com</h4>
+  
+        </div>
+    </div>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <script src="../js/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

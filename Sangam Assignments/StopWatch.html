@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+	<div id="watch">
+		<h1>Timer:</h1>
+		<p></p>
+	<button type="button" class="btn btn-default" id="start">Start</button>
+	<button type="button" class="btn btn-default" id="stop">Stop</button>
+	</div>
+	<script>
+	$("#start").on("click",start);
+	var min=0;
+	var sec=0;
+	var flag=true;
+	function start()
+	{
+		if(flag==true)
+		{
+			sec++;
+			if(sec>59)
+				min++;
+    		$("p").text(min+" : "+sec);
+    		setTimeout(start, 1000);
+		}
+	}
+	$("#stop").on("click",stop)
+	function stop()
+	{
+		flag=false;		
+	}
+	/*var counter=0;
+	$("#start").click(startInterval);
+	function startInterval()
+	{
+    	counter++;
+    	$("p").text(counter);
+	}
+	setInterval(startInterval, 2000);*/
+	</script>
+</html>

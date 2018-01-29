@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+		<interceptors>
+			<interceptor name="logger"
+				class="com.techlabs.interceptor.LogInterceptor"></interceptor>
+			<interceptor name="pageformatter"
+				class="com.techlabs.interceptor.PageFormatInterceptor"></interceptor>
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="logger"></interceptor-ref>
+				<interceptor-ref name="pageformatter"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="browse" class="com.techlabs.action.BrowseAction">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/jsp/browse.jsp
+			</result>
+		</action>
+	</package>
+</struts>

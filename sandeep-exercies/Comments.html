@@ -1,0 +1,24 @@
+<!Doctype html>
+<html>
+<head>
+<title>Comments App</title>
+<script>
+function doComment()
+{
+output=document.getElementById("output");
+textbox=document.getElementById("name");
+console.log("hello"+textbox.value);
+if(textbox.value!="")
+output.innerHTML=textbox.value;
+else
+alert("nothing has been pressed")
+}
+</script>
+</head>
+<body>
+
+Name: <input type="text" id="name">&nbsp<input type="button" name="button" value="Post" onclick="doComment()"><br>
+<div id="output">
+</div>
+</body>
+</html>

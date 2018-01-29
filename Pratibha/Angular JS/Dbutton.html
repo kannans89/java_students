@@ -1,0 +1,35 @@
+<html>
+<head>
+<script src="angular.js"></script>
+</head>
+<body ng-app="app">
+  <div ng-controller="firstCtrl">
+    <button add-div>Click Me</button>
+        <div id="container"></div>
+      </div>
+
+
+<script>
+var app = angular.module('app', []);
+
+app.directive("addDiv", function($compile){   
+          return{
+            restrict: 'AE',
+            link: function(scope , element,attr){        
+               element.bind("click", function(e){ 
+               var container =   angular.element(document.querySelector("#container"));
+               var childNode = $compile('<button id="i">X</button>')(container);
+               container.append(childNode);
+
+               });
+            }
+        };
+       });
+
+    app.controller('firstCtrl', function($scope){
+
+
+    });
+</script>
+</body>
+</html>

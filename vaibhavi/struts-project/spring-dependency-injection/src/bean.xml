@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean name="rectangle" class="com.techlabs.shapes.Rectangle"/>
+    <bean name="triangle" class="com.techlabs.shapes.Triangle"/>
+    <bean name="circle" class="com.techlabs.shapes.Circle"/>
+    <bean name="factory" class="com.techlabs.shapes.ShapeFactory"/>
+    <bean name="greetings" class="com.techlabs.setter.injection.Greetings">
+    <property name="message" value="Welcome to spring setter injection"></property>
+    
+    </bean>
+    <bean name="greetings1" class="com.techlabs.constructor.injection.Greetings1">
+    <constructor-arg value="Welcome to the constructor injection"></constructor-arg>
+    
+    </bean>
+    
+    
+
+    </beans>

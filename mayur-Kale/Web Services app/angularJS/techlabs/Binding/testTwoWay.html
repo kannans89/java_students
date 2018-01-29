@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Understanding Binding</title>
+    <script src='angular.min.js'></script>
+    <script src='mod1.js'></script>
+</head>
+
+<body ng-app='main' ng-controller='TwoWayCtrl'>
+    <section>
+        Name: {{student.name}}
+        <br>Id: {{student.id}}
+        <br>Age: {{student.age}}
+        <br>Aggregate: {{student.agg}}
+    </section>
+    <br>
+    <br>
+    <section>
+        Name:
+        <input type="text" ng-model="student.name">
+        <br> Id:
+        <input type="number" ng-model="student.id">
+        <br> Age:
+        <input type="number" ng-model="student.age">
+        <br> Aggregate:
+        <input type="number" ng-model="student.agg">
+        <br>
+</body>
+
+</html>

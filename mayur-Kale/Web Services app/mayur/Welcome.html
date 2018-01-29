@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<title>Welcome</title>
+
+<body>
+    <h1>Welcome to Website @ Mayur</h1> Enter Guest Name:
+    <input type="text" id="guestName" placeholder="Enter name" />
+    <input type="button" value="wish" onclick="wishHandler()" />
+    <section id="printResult"></section>
+    <script>
+    function wishHandler() {
+
+        document.getElementById("printResult").innerHTML = "Mayur says hello to " + document.getElementById("guestName").value;
+    }
+    </script>
+</body>
+
+</html>

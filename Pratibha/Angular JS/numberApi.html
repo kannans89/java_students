@@ -1,0 +1,48 @@
+<html>
+<head>
+<script src="jquery-3.2.1.js"></script>
+<script>
+$(document).ready(function(){
+$("#btn").click(function(){
+var s="http://numbersapi.com/"+document.getElementById("txt").value;
+
+$.ajax({
+  
+   url: s,
+   
+   data: {
+      format: 'json'
+   },
+   error: function() {
+      $('#info').html('<p>An error has occurred</p>');
+   },
+   dataType: 'jsonp',
+   success: function(data) {
+      var $title = $('<h1>').text(data);
+      
+      $('#info')
+         .append($title)
+        
+   },
+   type: 'GET'
+});
+});
+});
+
+</script>
+</head>
+<body>
+<p>Enter a number<input type="text" id="txt" />
+<button id="btn">Search</button></p>
+<div id="info"></div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

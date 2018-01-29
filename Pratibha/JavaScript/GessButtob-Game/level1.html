@@ -1,0 +1,112 @@
+<html>
+ <head>
+    <script type="text/javascript">
+	//timer code
+	
+
+	var seconds = 10;
+function secondPassed() {
+    var minutes = Math.round((seconds - 30)/60);
+    var remainingSeconds = seconds % 60;
+    if (remainingSeconds < 10) {
+        remainingSeconds = "0" + remainingSeconds;  
+    }
+    document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
+    if (seconds == 0) {
+	 document.getElementById('countdown').innerHTML = "Time Over";
+		 alert("You lose the game. Try again ");
+	  	  window.location.reload(true);
+
+        clearInterval(countdownTimer);
+           } else {
+        seconds--;
+    }
+}
+ 
+var count=Math.floor(Math.random()*10);
+		   console.log(count);
+	
+	
+	//game code
+	var flag=0;
+	function myFunction() {
+	var countdownTimer = setInterval('secondPassed()', 1000);
+
+    var x =10;
+      var arrayToModify = [];
+	  
+     // window.onload = function () {
+        var i, buttonContainer, newButton;
+		var buttonsToCreate=new Array();
+		for(i=0;i<x;i++){
+		buttonsToCreate[i]=i;
+		}
+			
+			
+      //  buttonsToCreate = ['button1','button2','button3','button4','button5'];
+        buttonContainer = document.getElementById('this_element_contains_my_buttons');
+        for (i = 0; i < buttonsToCreate.length; i++) {
+          newButton = document.createElement('input');
+          newButton.type = 'button';
+          newButton.value = 'X';
+          newButton.id = buttonsToCreate[i];
+         /* newButton.onclick = function () {
+            alert('You pressed '+this.id);
+            arrayToModify[arrayToModify.length] = this.id;
+          };*/
+		   newButton.onclick = function () {
+		   
+		    var property = document.getElementById(this.id);
+			console.log(this.id);
+    if (count ==this.id){
+        property.style.backgroundColor = "green";
+		setTimeout(function(){clearInterval(countdownTimer);
+        alert( "Congratulations you have win the level 1");
+		window.location.href = "level2.html";},100);
+
+		}
+      if (count >this.id){
+        property.style.backgroundColor = "red";
+      
+    }
+    if(count<this.id){
+        property.style.backgroundColor = "red";
+        
+    }
+		   
+		   }
+
+          buttonContainer.appendChild(newButton);
+		
+        }	
+
+      };
+	  
+	  
+	 function exit(){
+	  window.close();
+	  }
+	 
+		
+	  
+    </script>
+  </head>
+  <body bgcolor="pink" align ="center">
+  <marquee scrollamount="20">
+<h1 color="red">Guessing Green button Game(Timer Game)</h1>
+</marquee>
+
+  <span id="countdown" class="timer">Timer:</span>
+
+<div id="div1"></div>
+<p align="center">Welcome to level 1<br>
+Click the button to find the green door.<br>
+
+<button onclick="myFunction()">Start Game</button>
+    <div id='this_element_contains_my_buttons'></div>
+		</p>
+	<p id="demo"></p><br><br>
+		<input type="button" onclick="exit()" value='Exit' />
+
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		#displayBookDetails{
+			text-align: center;
+			background-color: aliceblue
+		}
+	</style>
+<div id="displayBookDetails">
+        ISBN : {{selectedBook.ISBN}}<br>
+        Title : {{selectedBook.title}}<br>
+        Author : {{selectedBook.author}}<br>
+        Image : <img ng-src="{{selectedBook.image}}" width="200" height="200"><br>
+        Description : {{selectedBook.description}}<br>
+        <a href="#/"><input type="button" value="BACK" class="btn btn-default"> </a>
+</div>
+</html>

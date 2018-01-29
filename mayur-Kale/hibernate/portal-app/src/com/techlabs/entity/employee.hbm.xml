@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.techlabs.entity.Employee" table="EMPLOYEES">
+		<id name="empId" type="int" column="emp_id" />
+		<property name="empName" type="string" column="emp_name"
+			not-null="true"></property>
+		<property name="deptNo" type="int" column="emp_deptNo"
+			not-null="true"></property>
+
+	</class>
+
+</hibernate-mapping> 

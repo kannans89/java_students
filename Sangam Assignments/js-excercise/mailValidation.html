@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="excercise.css">
+	</head>
+
+	<style>
+		body
+		{
+			background-color: azure;
+		}
+		button
+		{
+			background-color: dimgray;
+			color: white;
+			padding:7px;
+			border-radius:8px;
+			width:70px;
+			border:1px
+		}
+	</style>
+	<form name="mailValidation">
+<body>
+	<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="myVideo.html">Video</a></li>
+				<li><a href="#">E-mail Validation</a></li>
+				<li><a href="mobNoValidation.html">Mobile No. Validation</a></li>
+				<li><a href="circle.html">Circle</a></li>
+				<li><a href="semantics.html">HTML5 Semantics</a></li>
+	</ul>
+
+	<div id="container">
+    	<input type="text" id="mailID" name="mailID" placeholder="Enter yuor E-mail ID">
+		<button type="submit" id="submit" onclick="isValidEmail(document.mailValidation.mailID)">Submit</button>
+		<br>
+		<input type="email" id="mailID" name="mailID" placeholder="Enter yuor E-mail ID(HTML5)" style="margin-top: 20px">
+		<button type="submit" id="submit">Submit</button>
+
+	</div>
+	
+	<script>
+		
+		var regExpression=/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+		function isValidEmail(email)
+		{
+			if(email.value=="")
+				alert("Please enter email id");
+			else if(email.value.match(regExpression))
+				alert("Validated email sucessfully");
+			else
+				alert("Please enter valid email id");
+			document.mailalidation.mailID.value="";
+		}		
+	</script>
+	
+</body>
+	</form>
+</html>

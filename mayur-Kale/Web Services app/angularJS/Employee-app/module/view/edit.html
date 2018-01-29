@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Edit</title>
+</head>
+
+<body>
+    <div class="container">
+        <center>
+            <h1>Edit Student Detail</h1></center>
+        <button type="button" class="btn btn-default pull-right btn-lg" ng-click="goBack()"><span class="glyphicon glyphicon-chevron-left"></span> Back</button>
+        <br>
+        <br>
+        <br>
+        <form class="form-group" name="myForm">
+            <label for="student.rollNo">Roll No</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="number" class="form-control" name="rollNo" ng-model="student.rollNo" placeholder="Roll no" required>
+                </div>
+                <div class="col-md-4">
+                    <span style="color:red" ng-show="myForm.rollNo.$dirty && myForm.rollNo.$invalid ||myForm.rollNo.$untouched">
+<span ng-show="myForm.rollNo.$error.number">*</span>
+                    <span ng-show="myForm.rollNo.$error.required">*</span>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <label for="student.name">Name</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="name" ng-model="student.name" placeholder="Name" required>
+                </div>
+                <div class="col-md-4"> <span style="color:red" ng-show="myForm.name.$dirty && myForm.name.$invalid ||myForm.rollNo.$untouched">
+<span ng-show="myForm.name.$error.required">*</span>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <label for="student.age">Age</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="number" class="form-control" name="age" ng-model="student.age" placeholder="Age" required>
+                </div>
+                <div class="col-md-4"><span style="color:red" ng-show="myForm.age.$dirty && myForm.age.$invalid ||myForm.rollNo.$untouched">
+<span ng-show="myForm.age.$error.number">*</span>
+                    <span ng-show="myForm.age.$error.required">*</span>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <label for="student.email">Email</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="email" class="form-control" name="email" ng-model="student.email" placeholder="Email" required> </div>
+                <div class="col-md-4">
+                    <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid ||myForm.rollNo.$untouched">
+
+<span ng-show="myForm.email.$error.email">*</span><span ng-show="myForm.email.$error.required">*</span></span>
+                </div>
+            </div>
+            <br>
+            <label for="student.date">Date</label>
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="date" ng-model="student.date" placeholder="Date" required>
+                </div>
+                <div class="col-md-4"><span style="color:red" ng-show="myForm.date.$dirty && myForm.date.$invalid ||myForm.rollNo.$untouched">
+<span ng-show="myForm.date.$error.required">*</span>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <label for="student.isMale">Gender :</label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="student.isMale" value="male"> Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" ng-model="student.isMale" value="female"> Female
+            </label>
+            <br>
+            <br>
+            <button type="button" class="btn btn-default btn-primary" ng-click="onSave()" ng-disabled="
+myForm.rollNo.$dirty && myForm.rollNo.$invalid || myForm.name.$dirty && myForm.name.$invalid||myForm.age.$dirty && myForm.age.$invalid||myForm.email.$dirty && myForm.email.$invalid||myForm.date.$dirty && myForm.date.$invalid
+                ">Save Details</button>
+        </form>
+    </div>
+</body>
+
+</html>

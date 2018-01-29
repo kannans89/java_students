@@ -1,0 +1,11 @@
+vaibhavi/reportee/nirali
+Ayush/reportee/nirali
+nirali/manager
+krina/reportee/ankita
+ankita/manager
+raj/reportee/nirali
+harsh/reporee/ankita
+riya/reportee/ankita
+hema/manager
+sagar/reportee/hema
+ashish/CEO

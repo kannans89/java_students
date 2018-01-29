@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="allmaster" template="/allmaster.jsp">
+        <put-attribute name="title"  value="MyNotes.Com"/>
+        <put-attribute name="body"   value=""/>
+    </definition>
+    
+     
+
+    <definition name="login" extends="allmaster">
+        <put-attribute name="title"  value="Login"/>
+        <put-attribute name="body"   value="/login.jsp"/>      
+    </definition>
+
+    <definition name="register" extends="allmaster">
+        <put-attribute name="title"  value="Registration"/>
+        <put-attribute name="body"   value="/register.jsp"/>      
+    </definition>
+    
+    <definition name="forgot" extends="allmaster">
+        <put-attribute name="title"  value="Recover Password"/>
+        <put-attribute name="body"   value="/forgotpassword.jsp"/>      
+    </definition>
+    
+    
+     <definition name="master" template="/master.jsp">
+        <put-attribute name="title"  value="MyNotes.Com"/>
+        <put-attribute name="body"   value=""/>
+    </definition>
+    
+    
+    <definition name="home" extends="master">
+        <put-attribute name="title"  value="Recent Notes"/>
+        <put-attribute name="body"   value="/home.jsp"/>      
+    </definition>
+    
+     <definition name="changePassword" extends="master">
+        <put-attribute name="title"  value="Change Password"/>
+        <put-attribute name="body"   value="/changepassword.jsp"/>      
+    </definition>
+    
+    <definition name="add" extends="master">
+        <put-attribute name="title"  value="Add Note"/>
+        <put-attribute name="body"   value="/add.jsp"/>      
+    </definition>
+    
+    <definition name="edit" extends="master">
+        <put-attribute name="title"  value="Edit Note"/>
+        <put-attribute name="body"   value="/edit.jsp"/>      
+    </definition>
+    
+     <definition name="search" extends="master">
+        <put-attribute name="title"  value="Search Notes"/>
+        <put-attribute name="body"   value="/search.jsp"/>      
+    </definition>
+  
+</tiles-definitions>

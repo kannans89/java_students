@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<style>
+	#homePage
+	{
+		text-align: center;
+		padding: 10px;
+		border: 3px;
+		background-color:beige;
+	}
+	#heading
+	{
+		background-color:antiquewhite;
+		text-align: center;
+		background-image: url(images/2.png);
+	}
+</style>
+<body background="images/1.png">
+	<div id="heading">
+	<h2 style="color:darkblue">Welcome to the Game Zone..!!!!</h2>
+	<img src="images/back1.jpg"style="width:200px;height:200px;">
+	<img src="images/logo.png"style="width:200px;height:200px;">
+	<img src="images/cool.jpg"style="width:200px;height:200px;">
+	</div>
+	<div id="homePage">
+		<button type="button" class="btn btn-default btn-lg" id="button" style="margin-top: 10px" onclick="createBoard()">Start</button>
+	</div>
+	<script>
+		var board=[];
+		var row=3
+		var col=3;
+		console.log(row);
+		for(var i=0;i<row;i++)
+		{
+			board[i]=[];
+		}
+		var counter=1;
+		var mark="";
+		var whosTurnCounter=0;
+		var homePage=$("#homePage");
+		for(var i=0;i<row;i++)
+			{
+				for(var j=0;j<col;j++)
+					{
+						board[i][j]=counter++;
+					}
+			}
+		function createBoard()
+		{
+			document.getElementById("button").style.display="none";
+			for(var i=1;i<=row*row;i++)
+			{
+				homePage.append('<input type="button" id="' + i + '" value="' + i + '" style="width:50px;height:50px;border-radius:8px;margin-top:10px" onclick="checkBoard(this.id)" >');
+				if(i%row==0)
+					homePage.append('<br>');
+			}
+		}
+		function checkBoard(id)
+		{
+			var cellNo="";
+			cellNo=id;
+			var currentButton=document.getElementById(id);
+			if(whosTurnCounter%2==0)
+			{
+				mark="X";
+				currentButton.value=mark;
+				currentButton.disabled=true;
+			}
+			else
+			{
+				mark="O";
+				currentButton.value=mark;
+				currentButton.disabled=true;
+			}
+			whosTurnCounter++;
+			if(whosTurnCounter>=row*row)
+			{
+				alert("Game is draw..!!");
+				alert("Play again..!!");
+				location.reload();
+			}
+			for(var row_index=0;row_index<row;row_index++)
+			{
+				for(var col_index=0;col_index<col;col_index++)
+				{
+					if(board[row_index][col_index]!="X" || board[row_index][col_index]!="O")
+					{
+						if(cellNo==(board[row_index][col_index]))
+						{
+							setMark(row_index, col_index, mark);
+						}
+					}
+				}
+			}
+			checkForWinner(mark);
+		}
+		function setMark(rowPos,colPos,mark)
+		{
+			board[rowPos][colPos]=mark;
+		}
+		function checkForWinner(mark)
+		{
+			var rowCounter,colCounter,diagonal1,diagonal2,row_index,col_index;
+			for(row_index=0;row_index<row;row_index++)
+			{
+				rowCounter=0;
+				colCounter=0;
+				for(col_index=0;col_index<col;col_index++)
+				{
+					if(mark==board[row_index][col_index])//row checking
+					{
+						rowCounter++;
+					}
+					if(mark==board[col_index][row_index])//column checking
+					{
+						colCounter++;
+					}
+				}
+				if(rowCounter==row ||colCounter==row)
+					declareWinner(mark);
+			
+			}
+			diagonal1=0;
+			diagonal2=0;
+			for(row_index=0,col_index=col-1; row_index<row; row_index++,col_index--)
+			{
+				if(mark==board[row_index][row_index])//diagonal checking
+					diagonal1++;
+				if(mark==board[row_index][col_index])//diagonal2 checking
+					diagonal2++;			
+			}
+			if(diagonal1==row || diagonal2==row)
+				declareWinner(mark);
+		}
+		function declareWinner(mark)
+		{
+			if(mark==("X"))
+			{
+				alert("Player 1 won the game..!!");
+				alert("Play again..!!");
+				location.reload();
+			}
+			else
+			{
+				alert("Player 2 won the game..!!");
+				alert("Play again..!!");
+				location.reload();
+			}
+		}
+		
+	</script>
+</body>
+</html>

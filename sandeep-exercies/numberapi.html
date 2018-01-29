@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jQuery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.ajax({
+                    url: "http://numbersapi.com/" + $("#number").val(),
+                    type: 'GET',
+                    success: function (result) {
+                        $("#div").html(result);
+                    },
+                    beforeSend : function(){
+                    setTimeout(500);
+                     $("#div").html('<img src="spinner.gif" />');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    Enter your no:
+    <input name="number" type="text" id="number" />
+    <button>Fetch</button>
+    <div id="div"> </div>
+
+
+</body>
+
+</html>

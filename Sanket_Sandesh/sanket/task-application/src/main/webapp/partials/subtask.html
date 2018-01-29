@@ -1,0 +1,56 @@
+<section class="jumbotron text-center" id="subSection">
+	<h2>SubTask Module</h2>
+	<div class="btn-group">
+		<a href="#/tasks" class="btn btn-default btn-lg" type="button">Back
+			to Home</a> <a href="#/profile" class="btn btn-success btn-lg"
+			type="button">My Profile </a><a href="#/logout"
+			class="btn btn-danger btn-lg" type="button">Logout</a>
+	</div>
+</section>
+<div>
+	<h2 align="center" style="color: orange;">List of Sub-Tasks</h2>
+	<table style="width: 100%; color: aqua;" border="4">
+
+		<thead>
+			<tr>
+				<th>SubTask Id</th>
+				<th>SubTask Description</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Edit Sub-Task</th>
+				<th>Delete Sub-Task</th>
+			</tr>
+		</thead>
+
+		<tbody
+			ng-repeat="subtask in subtasks | orderObjectBy:'subtaskId':false "
+			style="color: white;">
+			<div ng-hide="!(subtasks.length>0)">
+			<tr>
+				<td>{{subtask.subtaskId}}</td>
+				<td>{{subtask.name}}</td>
+				<td>{{subtask.startDate}}</td>
+				<td>{{subtask.endDate}}</td>
+				<div ng-click="editSubTask()">
+					<td><a
+						href="#/task/{{taskId}}/updatesubtask/{{subtask.subtaskId}}"
+						class="glyphicon glyphicon-edit btn btn-link" type="button">Edit
+							SubTask</a></td>
+				</div>
+
+				<div ng-click="deleteSubTask()">
+					<td><a
+						href="#/task/{{taskId}}/deletesubtask/{{subtask.subtaskId}}"
+						class="glyphicon glyphicon-trash" type="button">Delete SubTask</a></td>
+				</div>
+			</tr>
+			</div>
+
+			<div ng-hide="(subtasks.length>0)">
+				<h3 align="center" style="color: red;">There is no SubTasks
+					available</h3>
+			</div>
+		</tbody>
+	</table>
+
+</div>

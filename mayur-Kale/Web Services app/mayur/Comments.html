@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<title>Comments</title>
+
+<body>
+    Comment:
+    <input type="text" id="commentText">
+    <input type="button" value="comment" onclick="addToArray()">
+    <br>
+    <br> Comments:
+    <ul id="commentList"></ul>
+    <section id="sectionList"></section>
+    <script>
+    var comment = [];
+
+    var sectionList = document.getElementById('sectionList');
+    var commentText = document.getElementById('commentText');
+
+    function addToArray() {
+
+        if (commentText.value.length != 0) {
+            comment.push(commentText.value);
+            //document.getElementById('commentList').innerHTML+= //"<li>"+document.getElementById('commentText').value+"</li>";
+
+            document.getElementById('commentText').value = "";
+
+            addToSection(comment);
+        }
+    }
+
+    function addToSection(comment) {
+
+        var text = "";
+        text = "<ul>";
+
+        for (var index = 0; index < comment.length; index++) {
+            text += "<li>" + comment[index] + "</li>";
+        }
+        text += "</ul>";
+
+        sectionList.innerHTML = text;
+
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<constant name="struts.devMode" value="true" />
+   <package name="com.techlabs" namespace="/" extends="struts-default">
+     <action name="display">
+            <result>/WEB-INF/View/Display.jsp</result>
+      </action>
+    <action name="">
+            <result >/AddContact.jsp</result>
+      </action>
+    <action name="add" class="com.techlabs.action.CustomerAction" method="execute">
+            <result name="success">/WEB-INF/View/Display.jsp</result>
+            <result name="input">/WEB-INF/View/Display.jsp</result>
+      </action>
+     
+       </package>
+</struts>
+	

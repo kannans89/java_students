@@ -1,0 +1,56 @@
+
+
+
+.table-fixed thead {
+	width: 98%;
+}
+
+.table-fixed tbody {
+	height: 300px;
+	overflow-y: auto;
+	width: 100%;
+}
+
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td,
+	.table-fixed th {
+	display: block;
+}
+
+.table-fixed tbody td, .table-fixed thead>tr>th {
+	float: left;
+	border-bottom-width: 0;
+}
+
+p{
+font-size:80%
+}
+
+ #loginContainer {
+            height: 100%;
+            width: 100%;
+            background-color: #000;
+        }
+        #loginContainer {
+            display: table;
+            vertical-align: middle;
+        }
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .vertical-center-row {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .vs-big-font {
+            font-size: 91px;
+        }
+        .vs-screen-bg {
+            background-color: #000;
+             
+
+        }
+  li:hover { background-color: #F7FAFA;
+  }

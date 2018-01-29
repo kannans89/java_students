@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+<div>
+<p></p>
+<input type="text" id="textid" placeholder="Enter number">
+<button type="submit">Submit</button>
+</div>
+<script>
+	var no=$("#textid");
+	var	url="http://numbersapi.com/"+no.val();  
+	$(document).ready(function(){
+    $("button").click(function(){
+        $.get(url, function(responseText){
+			console.log(responseText);
+			alert(responseText);
+        $("#p").text(responseText);    
+	});
+    });
+});
+</script>
+	
+<script>
+	/*var no=$("#textid");
+	$(document).ready(function () {
+    $.ajax({ 
+        type: 'GET', 
+        url: 'http://numbersapi.com/'+no.val();, 
+        data: { get_param: 'value' }, 
+        success: function (result) { },
+		complete:function (request){
+		$("#p").text(request.responseText);
+	}
+    });
+});*/
+</script>
+</body>
+</html>

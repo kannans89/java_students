@@ -1,0 +1,21 @@
+
+body {
+    font-size:12pt;
+    font-family: verdana;
+}
+.banner { 
+    font-family: arial;
+    font-size:20pt;
+    color:white;
+    background-color:red;
+    text-align:center;
+    font-weight:bold;
+}
+
+.menu {
+    background-color:#eeeeee;
+}
+
+.user {
+    float:right;
+}

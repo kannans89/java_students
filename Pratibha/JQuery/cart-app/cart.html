@@ -1,0 +1,100 @@
+<html>
+<head>
+<script src="jquery-3.2.1.js"></script>
+<script>
+$(document).ready(function(){
+var lineItem=new Array();
+var products=new Array();
+var product={};
+var plength=0;
+var option="";
+function Cart(pname,pid,pprice){
+var product={
+name:pname,
+price:pprice,
+id:pid
+}
+products[plength]=product;
+plength+=1;
+}
+var prod1=new Cart("Car",001,800000);
+var prod2=new Cart("Bike",002,50000);
+var prod3=new Cart("Laptop",003,25000);
+var prod4=new Cart("Mobile",004,10000);
+var prod5=new Cart("Earphones",005,100);
+var prod6=new Cart("Refrigrator",006,45000);
+var prod7=new Cart("AC",007,90000);
+var prod8=new Cart("Inverter",008,30000);
+var prod9=new Cart("fan",009,5000);
+var prod10=new Cart("Washing Machin",010,15000);
+for(var i=0;i<plength;i++){
+option=option+"<option class='option' id='"+products[i].id+"'><span>"+products[i].name+"</span></option>";
+
+}
+console.log(products.length);
+document.getElementById("select").innerHTML=option;
+$("#addbtn").click(function(){
+var quant=parseInt($("#quantity").val());
+if(quant<0)
+alert("enter valid quantity");
+else{
+for(i=0;i<products.length;i++){
+if(products[i].name==$("#select").val()){
+console.log(products[i]);
+break;
+}
+}
+var item={
+itemName:products[i].name,
+itemID:products[i].id,
+iPrice:products[i].price,
+iquantity:quant,
+totalPrice:products[i].price*quant,
+}
+
+var isPresent;
+for(i=0;i<lineItem.length;i++){
+if(lineItem[i].itemID==item.itemID){
+isPresent=true;
+var position=i;
+}
+else
+isPresent=false;
+}
+if(isPresent==true){
+lineItem[position].iquantity+=item.iquantity;
+lineItem[position].totalPrice+=item.totalPrice;
+displayTable();
+}
+else
+lineItem[lineItem.length]=item;
+displayTable();
+}
+});
+function displayTable(){
+var table,cartProduct="";
+	table="<table class="+"'table table-hover'"+" border='1'><tr><th>Sr No</th><th>Name</th><th>Price</th><th>quantity</th><th>Total Price</th></tr>";
+	for(var i=0;i<lineItem.length;i++){
+	var div = document.createElement('button');
+	cartProduct=cartProduct+"<tr><td>"+i+"</td><td>"+lineItem[i].itemName+"</td><td>"+lineItem[i].iPrice+"</td><td>"+lineItem[i].iquantity
+		  +"</td><td>"+lineItem[i].totalPrice+"</td>"+
+		  "</td></tr>";
+		 
+	}
+	
+	table=table+cartProduct+"</table>";
+	document.getElementById("div1").innerHTML=table;
+
+}
+
+});
+</script>
+</head>
+<body>
+<form>
+<p id="p1">Product<select id="select"></select>Quantity<input type="number" id="quantity"><input type="button" id="addbtn" value="Add To Cart">
+
+<div id="div1"></div>
+</form>
+</body>
+</html

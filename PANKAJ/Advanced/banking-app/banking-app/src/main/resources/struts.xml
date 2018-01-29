@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<package name="main" extends="struts-default">
+		<interceptors>
+			<interceptor name="userValidator"
+				class="com.techlabs.interceptors.ActionInterceptor" />
+
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="userValidator" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="invalidUser">
+				/WEB-INF/pages/login.jsp
+			</result>
+		</global-results>
+
+		<action name="login">
+			<result>
+				/WEB-INF/pages/login.jsp
+			</result>
+		</action>
+
+		<action name="validatelogin" class="com.techlabs.action.UserAction"
+			method="login">
+			<result name="successCUSTOMER" type="chain">
+				viewHomePage
+			</result>
+			<result name="successEMPLOYEE">
+				/WEB-INF/pages/employeeHome.jsp
+			</result>
+			<result name="forcePwdChange" type="chain">
+				changePassword
+			</result>
+			<result name="locked">
+				/WEB-INF/pages/locked.jsp
+			</result>
+			<result name="error">
+				/WEB-INF/pages/login.jsp
+			</result>
+		</action>
+
+		<action name="viewHomePage" class="com.techlabs.action.CustomerAction"
+			method="viewHomePage">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/customerHome.jsp
+			</result>
+		</action>
+
+		<action name="registerPayeeForm">
+			<interceptor-ref name="customStack" />
+			<result>
+				/WEB-INF/pages/registerPayee.jsp
+			</result>
+		</action>
+		<action name="registerPayee" class="com.techlabs.action.CustomerAction"
+			method="registerPayee">
+			<interceptor-ref name="customStack" />
+			<result name="success" type="chain">
+				viewHomePage
+			</result>
+			<result name="fail">
+				/WEB-INF/pages/error.jsp
+			</result>
+		</action>
+
+		<action name="transferFundsForm" class="com.techlabs.action.CustomerAction"
+			method="prePopulateTransferFundsForm">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/transferFunds.jsp
+			</result>
+		</action>
+		<action name="transferFunds" class="com.techlabs.action.CustomerAction"
+			method="transferFunds">
+			<interceptor-ref name="customStack" />
+			<result name="success" type="chain">
+				viewHomePage
+			</result>
+		</action>
+
+		<action name="updateCustomerForm" class="com.techlabs.action.CustomerAction"
+			method="prePopulateUpdateProfileForm">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/updateCustomer.jsp
+			</result>
+		</action>
+		<action name="updateCustomer" class="com.techlabs.action.CustomerAction"
+			method="updateProfile">
+			<interceptor-ref name="customStack" />
+			<result name="success" type="chain">
+				viewHomePage
+			</result>
+		</action>
+
+		<action name="addAccountForm">
+			<interceptor-ref name="customStack" />
+			<result>
+				/WEB-INF/pages/addAccount.jsp
+			</result>
+		</action>
+		<action name="addAccount" class="com.techlabs.action.EmployeeAction"
+			method="addCustomer">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/employeeHome.jsp
+			</result>
+		</action>
+
+		<action name="manageCustomerForm">
+			<result>
+				/WEB-INF/pages/manageAccount.jsp
+			</result>
+		</action>
+		<action name="manageCustomer" class="com.techlabs.action.EmployeeAction"
+			method="manageCustomer">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/employeeHome.jsp
+			</result>
+		</action>
+
+		<action name="updateEmployeeForm" class="com.techlabs.action.EmployeeAction"
+			method="prePopulateUpdateProfileForm">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/updateEmployee.jsp
+			</result>
+		</action>
+		<action name="updateEmployee" class="com.techlabs.action.EmployeeAction"
+			method="updateProfile">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/employeeHome.jsp
+			</result>
+		</action>
+
+		<action name="changeStatusForm">
+			<result>
+				/WEB-INF/pages/changeUserStatus.jsp
+			</result>
+		</action>
+		<action name="changeStatus" class="com.techlabs.action.EmployeeAction"
+			method="changeUserStatus">
+			<result name="success">
+				/WEB-INF/pages/employeeHome.jsp
+			</result>
+		</action>
+
+		<action name="changePassword">
+			<interceptor-ref name="customStack" />
+			<result>
+				/WEB-INF/pages/changePassword.jsp
+			</result>
+		</action>
+		<action name="validateChangePassword" class="com.techlabs.action.UserAction"
+			method="changePassword">
+			<interceptor-ref name="customStack" />
+			<result name="success">
+				/WEB-INF/pages/pwdResetSuccess.jsp
+			</result>
+			<result name="fail">
+				/WEB-INF/pages/error.jsp
+			</result>
+		</action>
+
+		<action name="forgotPassword">
+			<result>
+				/WEB-INF/pages/forgotPassword.jsp
+			</result>
+		</action>
+		<action name="validateForgotPassword" class="com.techlabs.action.UserAction"
+			method="forgotPassword">
+			<result name="success">
+				/WEB-INF/pages/pwdResetSuccess.jsp
+			</result>
+			<result name="fail">
+				/WEB-INF/pages/error.jsp
+			</result>
+		</action>
+
+		<action name="logout" class="com.techlabs.action.UserAction"
+			method="logout">
+			<result name="success">
+				/WEB-INF/pages/loggedout.jsp
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+			<action name="login">
+			<result>
+				/WEB-INF/jsp/login.jsp
+			</result>
+		</action>
+		<action name="healthtracker">
+			<result>
+				/WEB-INF/jsp/health.jsp
+			</result>
+		</action>
+		<action name="submitdetails" class="com.techlabs.action.LoginAction">
+			<result name="welcome">
+				/WEB-INF/jsp/welcome.jsp
+			</result>
+			<result name="input">
+				/WEB-INF/jsp/login.jsp
+			</result>
+		</action>
+		<action name="checkhealth" class="com.techlabs.action.HealthTracker">
+			<result name="input">
+				/WEB-INF/jsp/health.jsp
+			</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean name="employee" class="com.techlabs.spring.Employee">
+		<constructor-arg ref="address"></constructor-arg>
+		<property name="insurance" ref="insuranceInfo"></property>
+	</bean>
+
+	<bean name="address" class="com.techlabs.spring.AddressInfo">
+		<constructor-arg>
+			<value>MG marg</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>Kalyan</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>Maharashtra</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>421301</value>
+		</constructor-arg>
+	</bean>
+
+	<bean name="insuranceInfo" class="com.techlabs.spring.InsuranceInfo">
+		<constructor-arg>
+			<value>Health Policy</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>100</value>
+		</constructor-arg>
+	</bean>
+
+
+</beans>

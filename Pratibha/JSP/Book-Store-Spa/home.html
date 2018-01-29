@@ -1,0 +1,57 @@
+<style>
+    .container {
+        width: 100%;
+    }
+    
+    #add {
+        background-color: brown;
+        float: right;
+        vertical-align: middle;
+    }
+    
+    hr {
+        border-style: inset
+    }
+    
+    #img-div {
+        float: left
+    }
+    
+    #title-div {
+        float: inherit;
+        align-content: center;
+    }
+    
+    #delete-div {
+        float: right;
+    }
+</style>
+<section>
+    <p></p>
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading"> Book count is: {{count}}
+                <a href="#!addBook">
+                    <input type="button" class="btn button" id="add" value="Add Book"> </a>
+            </div>
+            <div class="panel-body" ng-repeat="x in books track by $index">
+                <div id="img-div"> <img ng-src="{{x.image}}" alt="html-img" style="width:200px;height:228px;" /></div>
+                <div id="title-div">
+                    <p><b>Title:{{x.title}}</b></p>
+                    <p><b>ISBN:{{x.isbn}}</b></p>
+                </div>
+                <div id="delete-div">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br> <a class="btn btn-primary" ng-href='#!editBook' ng-click='go($index)'>Edit</a> <a class="btn btn-primary" ng-href='#!deleteBook' id="{{x.isbn}}" ng-click='go($index)'>Delete</a> </div>
+            </div>
+            <hr>
+            <div class="panel-body"> </div>
+        </div>
+    </div>
+</section>

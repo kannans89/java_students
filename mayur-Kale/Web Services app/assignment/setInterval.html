@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="jquery-3.1.0.min.js"></script>
+    <title>SetInterval</title>
+</head>
+
+<body>
+    <h1>Understanding SetInterval</h1>
+    <input type="button" value="Stop" id="stop">
+    <script type="text/javascript">
+    var interval = 0;
+    console.log('started');
+    var myTimer = setInterval(function() {
+        interval += 1;
+        console.log('Called after ' + interval + " s");
+    }, 1000);
+
+    $(document).ready(function() {
+        $('#stop').click(function() {
+            clearInterval(myTimer);
+            console.log('Stopped');
+
+        });
+    });
+    </script>
+</body>
+
+</html>

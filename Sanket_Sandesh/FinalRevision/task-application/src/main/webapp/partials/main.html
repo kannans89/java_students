@@ -1,0 +1,54 @@
+	<section class="jumbotron text-center" id="mainSection">
+		<h4>
+			Welcome To Task Management
+			<h2>
+				{{activeuser.username}}
+				<h2>
+		</h4>
+		<div class="btn-group">
+			<a href="#/addtask" class="btn btn-default btn-lg" type="button">Add
+				Task</a> <a href="#/profile" class="btn btn-success btn-lg" type="button">My
+				Profile</a> <a href="#/logout" class="btn btn-danger btn-lg" type="button">Logout</a>
+		</div>
+	</section>
+<h2 align="center" style="color: orange;">List of Tasks</h2>
+<table style="width: 100%; color: aqua;" border="4">
+	<thead>
+		<tr>
+			<th>Task Id</th>
+			<th>Task Description</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Edit Task</th>
+			<th>View Sub-Task</th>
+			<th>Add Sub-Task</th>
+			<th>Delete Task</th>
+		</tr>
+	</thead>
+	<tbody ng-repeat="task in tasks | orderObjectBy:'taskId':false "
+		style="color: white;">
+		<div ng-hide="!(tasks.length>0)">
+			<tr">
+				<td>{{ task.taskId }}</td>
+				<td>{{ task.name }}</td>
+				<td>{{ task.startDate }}</td>
+				<td>{{ task.endDate }}</td>
+				<td>
+						<a href="#/updatetask/{{task.taskId}}"
+							class="glyphicon glyphicon-edit btn btn-link" type="button" ng-model="task">Edit
+							Task</a>
+					</td>
+				<td><a href="#/task/{{task.taskId}}/subtasks"
+					class="glyphicon glyphicon-tasks " type="button">View SubTask</a></td>
+				<td><a href="#/task/{{task.taskId}}/addsubtask"
+					class="glyphicon glyphicon-plus-sign" type="button">Add SubTask</a></td>
+				<td><a href="#/deletetask/{{task.taskId}}"
+					class="glyphicon glyphicon-trash" type="button">Delete Task</a></td>
+			</tr>
+		</div>
+		<div ng-hide="(tasks.length>0)">
+			<h2 style="color: red;" align="center">Please add some Task.</h2>
+		</div>
+	</tbody>
+</table>
+</div>

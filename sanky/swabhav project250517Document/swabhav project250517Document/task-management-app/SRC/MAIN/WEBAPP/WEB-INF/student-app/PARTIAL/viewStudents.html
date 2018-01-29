@@ -1,0 +1,24 @@
+<section id='/view'>
+    <h1 style="{'background-color':cyan}" >Student details</h1>
+    <table >
+    <tr><th>name</th>
+        <th>rollno</th>
+        <th>age</th>
+        <th>ismale</th>
+        <th>email</th>
+        <th>date</th>
+      
+        </tr>
+    <tr ng-style="{'background-color': ({{student.age}}>=23 ? 'cyan' : 'red')}" ng-repeat="student in mydata">
+        <td>{{student.name}}</td>
+        <td >{{student.rollNo}}</td>
+        <td ng-model="value" >{{student.age}}</td>
+        <td ><input type="checkbox" onclick='return false' ng-model='student.isMale' ></td>
+        <td >{{student.email}}</td>
+        <td >{{student.date}}</td>
+        <td ><button ng-click="delete(student.rollNo)">x</button></td>
+       
+        </tr>
+    </table>
+    
+</section>

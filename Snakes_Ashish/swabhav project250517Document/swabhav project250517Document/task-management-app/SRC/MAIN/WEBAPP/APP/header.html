@@ -1,0 +1,141 @@
+
+<div ng-controller="loginCtrl">
+<!--  <nav class="navbar navbar-primary" style="background-color:#008CBA;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display 
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse" style="background-color:#008CBA;">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar" ></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="color:#F7FAFA; ">Task Manager</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling 
+    <div class="collapse navbar-collapse" id="dropdownMenu1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#F7FAFA;">{{username}}<span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="background-color:#008CBA;">
+          <!-- <li><a href="#" style="{color:#F7FAFA;} :hover {color: black}">Logout</a></li>
+            <li><a href="#"style="{color:#F7FAFA;} :hover {color: black}">Change password</a></li>
+              <li><a href="#/login" ng-click="logout()" style="{color:#F7FAFA;} :hover {color: black}">Logout</a></li>
+					<li><a data-target="#changePassword" data-toggle="modal" style="{color:#F7FAFA;} :hover {color: black}">change
+							password</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse 
+  </div><!-- /.container-fluid 
+</nav>-->
+	<nav class="navbar" style="background-color: #337ab7;">
+		<div class="container-fluid">
+
+
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle "
+					data-toggle="collapse" data-target="#navbar-collapse"
+					style="backgroung-color: #F7FAFA;" >
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar" style="color:#008CBA;"></span> <span class="icon-bar"  style="color:#008CBA;"></span> <span
+						class="icon-bar"  style="color:#008CBA;"></span>
+				</button>
+
+				<!--  <h6 class="navbar-brand">Task Manager</h6>-->
+				<a class="navbar-brand" href="#" style="color: #F7FAFA;">Task
+					Manager</a>
+			</div>
+			<!-- end navbar-header -->
+
+
+					<!--  <div class="collapse navbar-collapse" id="navbar-collapse">
+						<label>{{username}}</label>-->
+
+						<ul class="nav navbar-nav">
+							<li ><a data-target="#changePassword" data-toggle="modal"
+								style="color: black;">change
+									password</a></li>
+							<li><a href="#/login"
+								style="color: black;"
+								ng-click="logout()">Logout</a></li>
+
+						</ul>
+					</div>
+					<!-- end collapse--> 
+
+					
+		</div>
+		
+		<!-- end container--> 
+	</nav>
+</div>
+<div class="modal fade" id="changePassword" role="dialog"
+	ng-controller="loginCtrl">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Change password</h4>
+			</div>
+
+			<div class="modal-body">
+				<form name="changePasswordForm">
+					<div class="form-group">
+						<label>old password:</label> <input type="password"
+							name="oldPassword" required placeholder="old password"
+							class="form-control input-sm" ng-model="oldPassword"
+							ng-blur="validateOldPassWord(oldPassword)"> <span
+							ng-show="Pass"> <img src="images/loading3.gif">
+						</span><span ng-show="verified"> <span
+							class="glyphicon glyphicon-ok" style="color: #00ff00;">verified</span>
+						</span><span ng-show="unverified"> <span
+							class="glyphicon glyphicon-remove" style="color: #FF0000;">wrong
+								password</span>
+						</span>
+						<p style="color: #FF0000;" class="help-block">{{oldPasswordError}}</p>
+						<p
+							ng-show="changePasswordForm.oldPassword.$invalid && !changePasswordForm.oldPassword.$pristine"
+							class="help-block" style="color: #FF0000;">current password
+							is required.</p>
+					</div>
+					<div class="form-group">
+						<label>new password:</label> <input type="password"
+							name="newPassword" required placeholder="new password"
+							class="form-control input-sm" ng-model="newPassword"
+							ng-blur="validateNewPassWord()">
+
+						<p style="color: #FF0000;" class="help-block">{{newPassError}}</p>
+						<p
+							ng-show="changePasswordForm.newPassword.$invalid && !changePasswordForm.newPassword.$pristine"
+							class="help-block" style="color: #FF0000;">password is
+							required.</p>
+					</div>
+					<div class="form-group">
+						<label>new password:</label> <input type="password"
+							name="confirmPassword" class="form-control input-sm" required
+							placeholder="new password" ng-model="newPasswordConfirm"
+							ng-change="validateNewPassWord()">
+						<p style="color: #FF0000;" class="help-block">{{newPassConfirmError}}</p>
+						<p
+							ng-show="changePasswordForm.confirmPassword.$invalid && !changePasswordForm.confirmPassword.$pristine"
+							class="help-block" style="color: #FF0000;">password is
+							required.</p>
+					</div>
+
+					<button type="submit" class="btn btn-success btn-sm "
+						ng-click="changePassword()"
+						ng-disabled="changePasswordForm.$invalid" data-dismiss="modal">change</button>
+
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

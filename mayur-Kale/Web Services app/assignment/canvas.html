@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML5 features</title>
+</head>
+Circle with color red
+<br>
+<canvas id="circle" width="100" height="100"></canvas>
+<br> Circle with color red and blue
+<br>
+<canvas id="circleTwo" width="100" height="100"></canvas>
+</head>
+<script type="text/javascript">
+var circle = document.getElementById("circle");
+var circleTwo = document.getElementById("circleTwo");
+
+var ctx = circle.getContext('2d');
+ctx.beginPath();
+ctx.arc(50, 50, 20, 0, 2 * Math.PI, false);
+ctx.fillStyle = 'red';
+ctx.fill();
+
+ctx = circleTwo.getContext('2d');
+ctx.beginPath();
+ctx.arc(50, 50, 20, 1.5 * Math.PI, 0.5 * Math.PI, true);
+ctx.fillStyle = 'red';
+ctx.fill();
+ctx.beginPath();
+ctx.arc(50, 50, 20, 0.5 * Math.PI, 1.5 * Math.PI, true);
+ctx.fillStyle = 'blue';
+ctx.fill();
+</script>
+
+<body>
+</body>
+
+</html>

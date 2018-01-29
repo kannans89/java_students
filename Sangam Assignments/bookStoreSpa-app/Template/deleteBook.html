@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		#deleteBook{
+			text-align: center;
+			background-color: aliceblue
+		}
+	</style>
+<div id="deleteBook">
+        ISBN : {{deletedBook.ISBN}}<br>
+        Title : {{deletedBook.title}}<br>
+        Author : {{deletedBook.author}}<br>
+        Image : <img ng-src="{{deletedBook.image}}" width="200" height="200"><br>
+        Description : {{deletedBook.description}}<br>
+        <a href="#/"><input type="button" value="BACK" class="btn btn-default"> </a>
+</div>
+</html>

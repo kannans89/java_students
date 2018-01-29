@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<style>
+	#home{
+		text-align: center;
+		background-color: beige
+	}
+</style>
+<div id="home">
+    <h1 align="center">Book Store App</h1>
+    <div><b>Total books in store: {{noOfBooks}}</b></div>
+    <div style="margin-top: 5px">
+        <a href="#addBook"><input type="button" class="btn btn-default" id="add" value="Add Book"> </a>
+    </div>
+    <div ng-repeat="book in books track by $index">
+        <div>
+            <br><b>Title:</b>{{book.title}}<br><br>
+			<a ng-href="#bookDescription" ng-click="showBookEvent($index)" id="{{book.ISBN}}"><img ng-src="{{book.image}}" width="200" height="200"></a>
+        </div>
+        <div> <b>ISBN:</b>{{book.ISBN}}
+            <br><a class="btn btn-default" ng-href='#editBook' ng-click='editBookEvent($index)' id='{{book.ISBN}}'>Edit</a>
+			<a class="btn btn-default" ng-href='#deleteBook' id="{{book.ISBN}}" ng-click='deleteBookEvent($index)'>Delete</a>
+            <br>
+            <br> </div>
+    </div>
+</div>
+</html>

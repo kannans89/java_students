@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+		<interceptors>
+			<interceptor name="userValidator"
+				class="com.techlabs.interceptor.ActionInterceptor" />
+				
+			<interceptor-stack name="customStack">
+				<interceptor-ref name="userValidator" />
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+		</interceptors>
+		
+		<global-results>
+			<result name="invalidUser">
+				/WEB-INF/jsp/login.jsp
+			</result>
+		</global-results>
+		
+		<action name="viewCustomer" class="viewCustomerSpring">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result name="success">
+				/WEB-INF/jsp/viewCustomer.jsp
+			</result>
+		</action>
+		<action name="addCustomer" class="addCustomerSpring">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result name="get">
+				/WEB-INF/jsp/addCustomer.jsp
+			</result>
+			<result name="post" type="chain">
+				viewCustomer
+			</result>
+			<result name="unknown">
+				/WEB-INF/jsp/unknown.jsp
+			</result>
+		</action>
+		<action name="/deleteCustomer*" class="deleteCustomerSpring">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result name="success" type="chain">
+				viewCustomer
+			</result>
+		</action>
+		<action name="/updateCustomer*" class="updateCustomerSpring">
+			<interceptor-ref name="customStack"></interceptor-ref>
+			<result name="get">
+				/WEB-INF/jsp/updateCustomer.jsp
+			</result>
+			<result name="success" type="chain">
+				viewCustomer
+			</result>
+		</action>
+		<action name="login" class="loginActionSpring">
+			<result name="success" type="chain">
+				viewCustomer
+			</result>
+			<result name="input">
+				/WEB-INF/jsp/login.jsp
+			</result>
+		</action>
+		<action name="logout" class="com.techlabs.action.LogoutUserAction">
+			<result name="success">
+				/WEB-INF/jsp/loggedout.jsp
+			</result>
+		</action>
+	</package>
+</struts>

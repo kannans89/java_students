@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Binding</title>
+    <script src="angular.min.js"></script>
+    <script src="controller6.js"></script>
+</head>
+
+<body ng-app='main' ng-controller='BindingCtrl'>
+    <b>Message</b> :
+    <input type="text" ng-model="style.message">
+    <br>
+    <br>
+    <b>Size</b>:
+    <input type="number" ng-model="style.size
+"> <b>px</b>
+    <br>
+    <br>
+    <b>Background Color</b>:
+    <select ng-model="style.bgcolor">
+        <option value="white">White</option>
+        <option value="#FF0000">Red</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#00FF00">Green</option>
+    </select>
+    <br>
+    <br>
+    <b>Text Color</b>:
+    <select ng-model="style.txtcolor">
+        <option value="black">Black</option>
+        <option value="#FF0000">Red</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#00FF00">Green</option>
+    </select>
+    <br>
+    <br>
+    <b>Font Family</b>:
+    <input type="radio" name="fontType" value="arial" ng-model="style.fontType"> Arial
+    <input type="radio" name="fontType" value="Times New Roman" ng-model="style.fontType"> Times New Roman
+    <input type="radio" name="fontType" value="Georgia" ng-model="style.fontType"> Georgia
+    <input type="radio" name="fontType" value="Serif" ng-model="style.fontType"> Serif
+    <br>
+    <br> <b>Your Output -></b>
+    <center>
+        <section ng-style="myStyle={'color': style.txtcolor,'background' :style.bgcolor,'font-family':style.fontType,'font-size':style.size+'px'}" ng-bind="style.message"></section>
+    </center>
+</body>
+
+</html>

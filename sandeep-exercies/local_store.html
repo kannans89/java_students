@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<a href="index.html"  style="display: block;background: #AEEBED;padding: 5px 10px 5px 10px;color: #0E2287;">HOME</a>
+	</head>
+	<body>
+		<form onsubmit="add()" style="margin: 30px; ">
+			<input type="text" id="textId" placeholder="post your comment" style=" font-size:30px; width: 500px;height: 50px ">
+			<!-- <input type="submit" value="Add" style="background-color: #36A49B;width: 50px;height: 50px"> -->
+			<div id="divId" style="font-size:20px"></div>
+		</form>
+		<script type="text/javascript">
+		var arr=[];
+		// localStorage.setItem("key",null);
+		var out=JSON.parse(localStorage.getItem("key"));
+		if (out!=null) {
+			arr=out;
+			show(arr);
+		}
+		function add()
+		{
+			var input =document.getElementById("textId").value;
+			this.arr.unshift(input);
+			console.log(arr);
+			localStorage.setItem("key", JSON.stringify(arr));
+			show(this.arr);
+			document.getElementById("textId").value="";
+		}
+		function show(ar)
+		{
+			fLen = ar.length;
+			text = "<div>";
+					for (var i = 0; i < fLen; i++) {
+						text += "<div class='panel-body panel defaultView' style='background-color: #B7D9D5'>" + ar[i]+"<a href='#' id="+i+" onclick='removeData(id)' style='text-align:right;font-size:30px'>X</a></div>";
+						// console.log(text);
+					}
+			text += "</div>";
+			document.getElementById("divId").innerHTML = text;
+			document.getElementById("textId").focus();
+		}
+		function removeData(place){
+		// console.log(place);
+			arr.splice(place,1);
+		// console.log(place);
+			// this.arr.remove(place);
+			localStorage.setItem("key", JSON.stringify(arr));
+			show(arr);
+			
+		}
+		</script>
+	</body>
+</html>

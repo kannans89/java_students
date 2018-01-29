@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<title>Color</title>
+
+<body id="body">
+    Color Picker
+    <select id="colorPicker">
+        <option value="white">Select Color</option>
+        <option value="#FF0000">Red</option>
+        <option value="#0000FF">Blue</option>
+        <option value="#00FF00">Green</option>
+    </select>
+    <p>This is para</p>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script>
+    $(
+        function() {
+            $('#colorPicker').change(function() {
+                var colorPicker = $('#colorPicker');
+                console.log(colorPicker.val())
+                $('#body').css('background-color', colorPicker.val());
+
+            });
+
+        }
+    );
+    </script>
+</body>
+
+</html>

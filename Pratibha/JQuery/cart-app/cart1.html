@@ -1,0 +1,135 @@
+<html>
+<head>
+<script src="jquery-3.2.1.js"></script>
+<script>
+$(document).ready(function(){
+var totalBill=0;
+var lineItem=[];
+var products=[];
+var product={};
+var plength=0;
+var option="";
+j=0;
+function Cart(pname,pid,pprice){
+var product={
+name:pname,
+price:pprice,
+id:pid
+}
+products.push(product);
+plength+=1;
+}
+var prod1=new Cart("Car",001,800000);
+var prod2=new Cart("Bike",002,50000);
+var prod3=new Cart("Laptop",003,25000);
+var prod4=new Cart("Mobile",004,10000);
+var prod5=new Cart("Earphones",005,100);
+var prod6=new Cart("Refrigrator",006,45000);
+var prod7=new Cart("AC",007,90000);
+var prod8=new Cart("Inverter",008,30000);
+var prod9=new Cart("fan",009,5000);
+var prod10=new Cart("Washing Machin",010,15000);
+for(var i=0;i<plength;i++){
+option=option+"<option class='option' id='"+products[i].id+"'><span>"+products[i].name+"</span></option>";
+
+}
+console.log(products.length);
+document.getElementById("select").innerHTML=option;
+$("#addbtn").click(function(){
+var quant=parseInt($("#quantity").val());
+console.log($("select").val());
+console.log($("#quantity").val());
+
+
+
+if(quant<0)
+alert("enter valid quantity");
+else{
+for(i=0;i<products.length;i++){
+if(products[i].name==$("#select").val()){
+console.log(products[i]);
+break;
+}
+}
+
+console.log(products[i].price+" "+quant);
+var item={
+itemName:products[i].name,
+itemID:products[i].id,
+iPrice:products[i].price,
+iquantity:quant,
+totalPrice:products[i].price*quant,
+}
+console.log(item);
+var isPresent;
+for(i=0;i<lineItem.length;i++){
+if(lineItem[i].itemID==item.itemID){
+isPresent=true;
+var position=i;
+}
+else
+isPresent=false;
+}
+if(isPresent==true){
+lineItem[position].iquantity+=item.iquantity;
+lineItem[position].totalPrice+=item.totalPrice;
+totalBill=totalBill+lineItem[position].totalPrice;
+console.log(totalBill);
+displayTable();
+}
+else{
+lineItem.push(item);
+totalBill=totalBill+item.totalPrice;
+console.log(totalBill);
+displayTable();
+}
+}
+});
+function displayTable(){
+var table,cartProduct="";
+	table="<table class="+"'table table-hover'"+" border='1'><tr><th>Sr No</th><th>Name</th><th>Price</th><th>quantity</th><th>Total Price</th><th>Delete Item</th></tr>";
+	for(var i=0;i<lineItem.length;i++){
+	var div = document.createElement('button');
+	cartProduct=cartProduct+"<tr ><td>"+i+"</td><td>"+lineItem[i].itemName+"</td><td>"+lineItem[i].iPrice+"</td><td>"+lineItem[i].iquantity
+		  +"</td><td>"+lineItem[i].totalPrice+"</td>"+
+		  "</td><td><input type='button' class='delete' id='"+j+"' value='Delete' name='button'/></td></tr>";
+		 j+1;
+	}
+	
+	table=table+cartProduct+"</table>";
+	document.getElementById("div1").innerHTML=table;
+$(".delete").click(function(){
+console.log(lineItem);
+var delid=$(this).attr('id');
+console.log(delid);
+
+lineItem.splice(delid,1);
+
+displayTable();
+});
+}
+$("#checkout").click(function(){
+var bill=0;
+for(var k=0;k<lineItem.length;k++){
+bill=bill+lineItem[k].totalPrice;
+}
+$("#div2").text("Total bill:"+bill);
+});
+});
+</script>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<body>
+ 
+<form class="form-inline">
+<p id="p1" class="form-control"><h1 align="center" color="red"><b><u>Shopping Cart Application</u></b></h1><br>
+<h4 align="center"><b>Product:</b><select id="select"></select>
+<b>Quantity:</b><input type="number" id="quantity">
+<input type="button" id="addbtn" value="Add To Cart" class="btn btn-default"><input type="button" id="checkout" value="checkout" class="btn btn-default"/>
+<div id="div1"></div></h4>
+<p><b><div id="div2"></div></b></p>
+</form>
+</body>
+</html>

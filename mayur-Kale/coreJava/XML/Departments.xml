@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<departments>
+	<dept>
+		<id>101</id>
+		<location>Panvel</location>
+		<deptName>IT</deptName>
+	</dept>
+	
+	<dept>
+		<id>102</id>
+		<location>Andheri</location>
+		<deptName>Computer</deptName>
+	</dept>
+	
+	<dept>
+		<id>103</id>
+		<location>Dadar</location>
+		<deptName>Electrical</deptName>
+	</dept>
+
+
+</departments>

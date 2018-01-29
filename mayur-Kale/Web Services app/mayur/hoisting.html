@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Understanding hoisting</title>
+</head>
+
+<body>
+    Understanding hoisting
+    <script type="text/javascript">
+    function main() {
+
+
+        for (var i = 0; i < 10; i++) {
+            // console.log(i);
+            foo = "hello";
+        }
+        console.log(foo);
+        // console.log(i);
+    }
+    main();
+    print("Hello");
+    var print = function(msg) {
+        console.log(msg);
+    }
+    </script>
+</body>
+
+</html>

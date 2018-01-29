@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<title>Comments</title>
+
+<body>
+    Comment:
+    <input type="text" id="commentText">
+    <input type="button" value="comment" id='comment'>
+    <br>
+    <br> Comments:
+    <ul id="commentList"></ul>
+    <section id="sectionList"></section>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+    $(
+        function() {
+            var comment = [];
+
+            var sectionList = $('#sectionList');
+            var commentText = $('#commentText');
+            var comment = $('#comment');
+            comment.click(function() {
+                if (commentText.value != 0) {
+                    comment.push(commentText.val());
+
+                    commentText.text("");
+
+                    addToSection(comment);
+                }
+
+                function addToSection(comment) {
+
+                    var text = "";
+                    text = "<ul>";
+
+                    for (var index = 0; index < comment.length; index++) {
+                        text += "<li>" + comment[index] + "</li>";
+                    }
+                    text += "</ul>";
+                    sectionList.html(text);
+
+                }
+
+            });
+            
+
+        }
+
+    );
+    </script>
+</body>
+
+</html>

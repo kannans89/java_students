@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.js"></script>
+<script>
+angular.module('app.swabhav.modeA', ["app.swabhav.modeB"]).controller('firstcontroller', function($scope,$rootScope) {
+  $scope.customer = {
+				name:'Pratibha',
+				location:'Dahanu'		
+				};
+				$rootScope.foo = 'Swabhav Techlab';
+});
+angular.module('app.swabhav.modeB', []).controller('secondcontroller', function($scope,$rootScope) {
+  $scope.shipment = {
+				address:'Andheri',
+				expectedDate:'22/1/17'		
+				};
+				console.log($rootScope.foo);
+});
+/*
+
+<div ng-app="" ng-init="name='Pratibha'">
+<h1>My first expression: {{ 22/7 }}</h1>
+<h2>My first expression: {{ name | uppercase  }}</h2>
+<h3>My first expression: {{ customer.name|| "Customer Not Found" }}</h3>
+</div>
+*/
+</script>
+
+
+<body ng-app="app.swabhav.modeA">
+<section  ng-controller='firstcontroller'>
+<p>Customer Name:{{ customer.name}}</p>
+<p>Customer Location:{{customer.location}}</p>
+
+</section>
+<section ng-controller='secondcontroller'>
+<p>Shipment address:{{shipment.address}}</p>
+<p>shipment Expected Date:{{shipment.expectedDate}}</p>
+</section>
+</body>
+</html>

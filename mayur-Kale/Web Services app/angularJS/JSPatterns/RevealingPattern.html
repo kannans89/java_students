@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Revealing Module Pattern</title>
+</head>
+
+<body>
+    <h1>Understanding Revealing Module Pattern</h1>
+    <script type="text/javascript">
+    var module = (function() {
+        var _printMessage = function(message) {
+            console.log(message);
+            //private method
+        };
+
+        var publicMethod = function(text) {
+            _printMessage(text);
+        };
+
+        return {
+            publicMethod: publicMethod
+        };
+
+
+    })();
+    module.publicMethod("Hello World");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .wrapper {
+            text-align: center;
+            background-color: yellow
+        }
+    </style>
+    <script src="jQuery.js"></script>
+    <script>
+        $(document).ready(domReadyHandler);
+        function domReadyHandler() {
+            var studno = $("#number");
+            var studname = $("#name");
+            var studage = $("#age");
+            var studemail = $("#email");
+            var studdate = $("#date");
+            var studisMale = $("#isMale");
+            var send = $("#sendbtn");
+            var getdata = $("#button1");
+            var deletedata = $("#deletebtn");
+            var editdata = $("#editbtn");
+            getdata.click(function takeData() {
+                $.ajax({
+                    url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
+                    type: 'GET',
+                    dataType: "xml",
+                    success: showdata,
+                    error: onError
+                });
+            });
+            deletedata.click(function removeData() {
+                $.ajax({
+
+                    url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/" + $("#deleteno").val(),
+                    type: 'DELETE',
+                    success: function (result) {
+                        console.log("Deleted..");
+                    },
+                    error: onError
+                });
+            });
+            editdata.click(function updateData() {
+
+                console.log("edit pressed");
+                $("table").find("tr").each(function () {
+                    $(this).find("td").each(function () {
+                        if ($(this).text() == $("#editno").val()) {
+                            console.log("edit ddd");
+
+                            studno.val($(this).text());
+                            studname.val($(this).next("td").text());
+                            studage.val($(this).next("td").next("td").next("td").next("td").text());
+                            studemail.val($(this).next("td").next("td").next("td").next("td").next("td").text());
+                            studdate.val($(this).next("td").next("td").next("td").next("td").next("td").next("td").text());
+                            studisMale.val($(this).next("td").next("td").next("td").next("td").next("td").next("td").next("td").text());
+
+                        }
+                    })
+                })
+            });
+            send.click(function sendData() {
+                console.log("Hello");
+                var rollNo = studno.val();
+                var name = studname.val();
+                var age = studage.val();
+                var email = studemail.val();
+                var date = studdate.val();
+                var isMale = studisMale.val();
+
+
+                var sendInfo = {
+                    rollNo: rollNo,
+                    name: name,
+                    age: age,
+                    email: email,
+                    date: date,
+                    isMale: isMale
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/" + $("#editno").val(),
+                    dataType: "json",
+                    data: sendInfo,
+                    success: function (msg) {
+                        console.log("Data added to the file...");
+                    },
+
+
+                });
+            });
+
+            $("#updatebtn").click(function () {
+                var rollNo = studno.val();
+                var name = studname.val();
+                var age = studage.val();
+                var email = studemail.val();
+                var date = studdate.val();
+                var isMale = studisMale.val();
+
+
+                var sendInfo = {
+                    rollNo: rollNo,
+                    name: name,
+                    age: age,
+                    email: email,
+                    date: date,
+                    isMale: isMale
+                };
+
+                $.ajax({
+                    type: "PUT",
+                    url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/",
+                    dataType: "json",
+                    data: sendInfo,
+                    success: function (msg) {
+                        console.log("Data added to the file...");
+                    },
+
+
+                });
+            });
+
+
+        }
+
+        function showdata(stud) {
+            var tableContent = "<table border = '1' cellspacing = '0' cellpadding = '5'>" +
+                "<tr>" +
+                "<th>RollNo</th>" +
+                "<th>Name</th>" +
+                "<th>Age</th>" +
+                "<th>Email</th>" +
+                "<th>Date</th>" +
+                "<th>isMale</th>" +
+                "</tr>";
+            $(stud).find("StudentDTO").each(function () {
+                tableContent += "<tr>" +
+
+                    "<td>" + $(this).find("RollNo").text() + "</td>" +
+                    "<td>" + $(this).find("Name").text() + "</td>" +
+                    "<td>" + $(this).find("Age").text() + "</td>" +
+                    "<td>" + $(this).find("Email").text() + "</td>" +
+                    "<td>" + $(this).find("Date").text() + "</td>" +
+                    "<td>" + $(this).find("isMale").text() + "</td>" +
+                    "</tr>";
+            });
+            $("#button2").click(function (e) {
+                $(stud).find("StudentDTO").each(function () {
+                    tableContent += "<tr>" +
+                        "<td>" + "<td>" + $(this).find("RollNo").text().append($('#number').val()) + "</td>" +
+
+                        "</tr>";
+                });
+            });
+            tableContent += "</table>";
+            $("#display").html(tableContent);
+        }
+
+
+        function onError(data) {
+            $("#display").html("Error.. please try again later");
+        }
+    </script>
+</head>
+
+<body style="background-color:rgb(0,255,255);text-align:center">
+
+    <h1>Press Show Button To See Student Data</h1>
+    <div class="wrapper">
+        <button id="button1"> &nbsp &nbsp &nbsp &nbsp Show &nbsp &nbsp &nbsp &nbsp </button>
+    </div>
+    <ul></ul>
+    <div id="display"> </div>
+    <div>
+
+        Roll No :<input name="number" type="text" id="number" /><br></br>
+        Name :<input name="name" type="text" id="name" /><br></br>
+        Age:<input name="age" type="text" id="age" /><br></br>
+        Email:<input name="email" type="text" id="email" /><br></br>
+        Date:<input name="date" type="text" id="date" /><br></br>
+        isMale<input name="isMale" type="text" id="isMale" /><br></br>
+
+    </div>
+    <div id="div1">
+
+       
+        <br></br>Enter Roll No to edit:<input type="number" id="editno"> <button id='editbtn'>Edit</button>
+        <button id="updatebtn">Update</button><br></br>
+        Enter Roll No to delete:<input type="delete" id="deleteno"> <button id='deletebtn'>Delete</button>
+        <br>
+    </div>
+
+</body>
+
+</html>

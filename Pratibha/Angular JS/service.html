@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="angular.js"></script>
+<body>
+
+<div ng-app="serviceApp" ng-controller="serviceCtrl"> 
+
+<p>Student is:</p>
+
+<h1>{{studentData}}</h1>
+<button ng-click="put()">PUT</button>
+<button ng-click="get()">GET</button>
+<button ng-click="removeRole()">DELETE</button>
+
+</div>
+
+<p>The $http service requests a page on the server,and gets the data.</p>
+
+<script>
+var app = angular.module('serviceApp', []);
+app.controller('serviceCtrl', function($scope, $http) {
+
+var stud={ rollNo:120,name:"pqr",age:22,email:"abc@abc.com",date:"20/12/2012",isMale:true};
+
+$http.put("http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/130",stud).then(function(response) {
+});
+
+
+  
+ 
+$http.post('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students', stud).then(function (response) {
+});
+
+/*
+        $http.delete('http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/' +120).success(function (data, status) {
+            console.log(data);
+        });   
+		*/
+$http.get("http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students").then(function (response) {
+	
+      $scope.studentData = response.data[0].rollNo +" "+response.data[0].name ;
+	  console.log(response);
+  });
+		
+});
+</script>
+
+</body>
+</html>

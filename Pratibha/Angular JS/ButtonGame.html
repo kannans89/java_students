@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.js"></script></style>
+</head>
+<body>
+<div  ng-app="DbuttonsApp" ng-controller="DbuttonsCtrl" ng-init="style1={'background-color':'red'} ;color={'background-color':'green'};color2={'background-color':'red'}">
+<h3></h3>
+<p></p>
+<p><strong>Note:</strong><br>Blue indicates you are behind target button<br>Red indicates yor are ahead of target button<br>Green indicates target button </p>   
+<p id="demo"></p>
+<button ng-click="myFunction()" ng-style="{'background-color':'pink'}">Start Game</button>
+<div id="div1"></div>
+ <span ng-repeat="n in arr"><input type='button' value='{{arr[n]}}' id='{{arr[n]}}' ng-click='chngcolor($event)'></button>&nbsp;</span>
+</div>
+<script>
+angular.module('DbuttonsApp', []).controller('DbuttonsCtrl', function($scope,$compile,$timeout) {
+$scope.x=0;
+$scope.btnid=0;
+$scope.btn=0;
+$scope.num=20
+$scope.myFunction=function() {
+   $scope.arr=[];
+   $scope.target=Math.floor(Math.random()*$scope.num+1);
+   console.log($scope.target);
+   for(var i=0;i<=$scope.num;i++){
+  $scope.arr.push(i);
+  $scope.btn+=1;
+  }
+	 }
+	 $scope.chngcolor = function(event) {
+	 console.log("hi");
+	 if(event.target.id==$scope.target){
+	event.target.style.backgroundColor='green';
+	$timeout(function() { alert("Congratulations you have win the game. Play again");},1000);
+	 $timeout(function() {  location.reload();},1000);
+
+	}
+	if(event.target.id>$scope.target)
+	event.target.style.backgroundColor='red';
+	if(event.target.id<$scope.target)
+	event.target.style.backgroundColor='blue';
+
+  }
+	});
+
+	  
+</script>
+
+</body>
+</html>

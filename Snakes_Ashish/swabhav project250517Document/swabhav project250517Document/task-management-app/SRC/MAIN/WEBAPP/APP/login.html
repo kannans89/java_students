@@ -1,0 +1,279 @@
+
+<body id="/login"  style="background-color:black;">
+	<div class="container-fluid" id="loginContainer"  >
+		<div class="row vertical-center-row">
+			<div class="col-xs-12 col-sm-8 col-md-6 col-center-block">
+				<div class="row">
+					<div class="col-sm-2 col-md-3">
+						<div class="text-center">
+							<div class="glyphicon glyphicon-list-alt vs-big-font"></div>
+							<h6>
+								Welcome to <small>Task Management App</small>
+							</h6>
+						</div>
+					</div>
+					<div class="col-sm-10 col-md-9">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Please sign in</h3>
+							</div>
+							<div class="panel-body">
+								<div class="login-form">
+									<form name="loginForm" novalidate>
+										<div class="form-group">
+										<label
+												class="glyphicon glyphicon-user" for="login-name"></label>
+											<input type="text" class="form-control login-field input-sm"
+												value="" placeholder="Enter your name" id="login-name"
+												ng-model="user.username" name="username"
+												placeholder="enter userid"
+												ng-blur="checkUsername(user.username)" required> 
+											<span ng-show="loaderUsername"> <img
+												src="images/loading3.gif">
+											</span><span ng-show="verifiedUsername"> <span
+												class="glyphicon glyphicon-ok" style="color: #00ff00;">verified</span>
+											</span><span ng-show="unverifiedUsername"> <span
+												class="glyphicon glyphicon-remove" style="color: #FF0000;">wrong
+													username</span>
+											</span>
+											<p
+												ng-show="loginForm.username.$invalid && !loginForm.username.$pristine"
+												class="help-block" style="color: #FF0000;">username is
+												required.</p>
+										</div>
+
+										<div class="form-group">
+										<label
+												class="glyphicon glyphicon-lock" for="login-pass"></label>
+											<input type="password"
+												class="form-control login-field input-sm" value=""
+												ng-model="user.password" placeholder="enter password"
+												name="password" id="login-pass" required> 
+											<p style="color: #FF0000;" ng-bind="passError"></p>
+
+											<p
+												ng-show="loginForm.password.$invalid && !loginForm.password.$pristine"
+												class="help-block" style="color: #FF0000;">password is
+												required.</p>
+										</div>
+
+										<button class="btn btn-primary btn-md btn-block" href="#"
+											ng-click="validateUser()" ng-disabled="loginForm.$invalid">Log
+											in</button>
+										<br>
+										<button class="btn btn-success btn-md btn-block "
+											data-target="#register" data-toggle="modal">Register</button>
+										<a class="login-link " data-target="#forgotPassword"
+											data-toggle="modal">Forgot your password?</a>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ </body> 
+
+
+
+
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+	ga('create', 'UA-46102911-5', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<div class="modal fade" id="register" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Register</h4>
+			</div>
+			<div class="modal-body">
+				<form name="regForm" novalidate>
+					<table cellpadding="5">
+
+						
+						<div class="form-group">
+							<label>Username:</label><span ng-show="loaderUsernameForReg"> <img
+								src="images/loading3.gif">
+							</span><span ng-show="unverifiedUsernameForReg"> <span
+								class="glyphicon glyphicon-ok" style="color: #00ff00;">available</span>
+							</span><span ng-show="verifiedUsernameForReg"> <span
+								class="glyphicon glyphicon-remove" style="color: #FF0000;">
+									username not available</span>
+							</span></span> <input type='text' ng-model="reg.username" name="username"
+								placeholder="enter username" class="form-control input-sm"
+								ng-blur="checkUsernameForReg(reg.username)" required>
+							<p style="color: #FF0000;" class="help-block">{{userError}}</p>
+							<p
+								ng-show="regForm.username.$invalid && !regForm.username.$pristine"
+								class="help-block" style="color: #FF0000;">username is
+								required.</p>
+						</div>
+						<div class="form-group">
+							<label>password:</label> <input type='password' name="password"
+								class="form-control input-sm" placeholder="enter password"
+								ng-minlength="3" ng-model="reg.password"
+								ng-change="validateRegistrationForm()" required>
+							<p id="
+									passError" style="color: #FF0000;"
+								class="help-block">{{passError}}</p>
+							<p ng-show="regForm.password.$error.minlength" class="help-block"
+								style="color: #FF0000;">password is too short.</p>
+						</div>
+
+						<div class="form-group">
+							<label>password:</label> <input type='password' ng-minlength="3"
+								name="confirmPassword" class="form-control input-sm"
+								placeholder="Re-enter password" ng-model="reg.confirmPassword"
+								ng-change="validateRegistrationForm()" required>
+							<p id="
+									passErrorAgain" style="color: #FF0000;"
+								class="help-block">{{passAgainError}}</p>
+							<p ng-show="regForm.confirmPassword.$error.minlength"
+								class="help-block" style="color: #FF0000;">Username is too
+								short.</p>
+						</div>
+						<div class="form-group">
+							<label>First Name:</label> <input type='text' name="fname"
+								class="form-control input-sm" placeholder="enter first name"
+								ng-model="reg.fname" ng-change="validateRegistrationForm()"
+								required>
+							<p id="
+									nameError" style="color: #FF0000;"
+								class="help-block">{{fnameError}}</p>
+							<p ng-show="regForm.fname.$invalid && !regForm.fname.$pristine"
+								class="help-block" style="color: #FF0000;">first name is
+								required.</p>
+						</div>
+						<div class="form-group">
+							<label>Last Name:</label> <input type='text' name="lname"
+								class="form-control input-sm" placeholder="enter last name"
+								ng-model="reg.lname" ng-change="validateRegistrationForm()"
+								required>
+							<p id="
+									nameError" style="color: #FF0000;"
+								class="help-block">{{lnameError}}</p>
+							<p ng-show="regForm.lname.$invalid && !regForm.lname.$pristine"
+								class="help-block" style="color: #FF0000;">Last name is
+								required.</p>
+						</div>
+						<div class="form-group">
+							<label>Department:</label> <input type='text' name="dept"
+								class="form-control input-sm" placeholder="enter department"
+								ng-model="reg.dept" ng-change="validateRegistrationForm()"
+								required>
+							<p id="
+									deptError" style="color: #FF0000;"
+								class="help-block">{{deptError}}</p>
+							<p ng-show="regForm.dept.$invalid && !regForm.dept.$pristine"
+								class="help-block" style="color: #FF0000;">Department name
+								is required.</p>
+						</div>
+						<div class="form-group">
+							<span><label>Email:</label><span ng-show="loaderMail">
+									<img src="images/loading3.gif">
+							</span><span ng-show="unverifiedMail"> <span
+									class="glyphicon glyphicon-ok" style="color: #00ff00;">available.</span>
+							</span><span ng-show="verifiedMail"> <span
+									class="glyphicon glyphicon-remove" style="color: #F00000;">
+										user With this Email id already present</span></span></span> <input type="email"
+								name="email" class="form-control input-sm"
+								placeholder="enter email address" ng-model="reg.mail"
+								ng-blur="isUserPresent(reg.mail)" required>
+							<p id="emailError" style="color: #FF0000;" class="help-block">{{mailError}}</p>
+							<p ng-show="regForm.email.$invalid && !regForm.email.$pristine"
+								class="help-block" style="color: #FF0000;">Enter a valid
+								email.</p>
+						</div>
+						<div class="form-group">
+							<label>mobile no:</label> <input type='text' name="phone"
+								class="form-control input-sm" placeholder="enter mobile no"
+								ng-model="reg.phone" ng-change="validateRegistrationForm()"
+								required>
+
+							<p style="color: #FF0000;" class="help-block">{{mobileError}}</p>
+							<p ng-show="regForm.phone.$invalid && !regForm.phone.$pristine"
+								class="help-block" style="color: #FF0000;">Enter a vaid
+								mobile no .</p>
+						</div>
+
+						<tr>
+							<td></td>
+							<td><input type='submit' value="Register"
+								data-dismiss="modal" class="btn btn-info btn-sm"
+								ng-disabled="regForm.$invalid" ng-click="register()"></td>
+						</tr>
+						<tr>
+					</table>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="forgotPassword" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Enter Email Id</h4>
+
+			</div>
+			<div class="modal-body">
+				<div align="center">
+					<form name="forgotPassForm" novalidate>
+
+						<div class="form-group">
+							<span><label>Enter your mail</label><span
+								ng-show="loaderForgotPassMail"> <img
+									src="images/loading3.gif">
+							</span><span ng-show="verifiedForgotPassMail"> <span
+									class="glyphicon glyphicon-ok" style="color: #00ff00;">verified</span>
+							</span><span ng-show="unverifiedForgotPassMail"> <span
+									class="glyphicon glyphicon-remove" style="color: #F00000;">No
+										user With this Email id</span></span></span> <input type="email" name="email"
+								class="form-control input-sm" placeholder="enter email address"
+								ng-model="mail" ng-change="isMailPresent(mail)" required>
+							<p id="emailError" style="color: #FF0000;" class="help-block">{{mailError}}</p>
+							<p
+								ng-show="forgotPassForm.email.$invalid && !forgotPassForm.email.$pristine"
+								class="help-block" style="color: #FF0000;">Enter a valid
+								email.</p>
+						</div>
+						<td><input type='submit' value="submit"
+							ng-disabled="forgotPassForm.$invalid" class="btn btn-info btn-sm"
+							ng-click="mailUser(mail)" data-dismiss="modal"></td>
+						</tr>
+
+					</form>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-sm"
+					data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

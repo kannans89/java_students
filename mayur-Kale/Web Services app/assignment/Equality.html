@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Equality</title>
+</head>
+
+<body>
+    1 = = 1
+    <div id="dEquality"></div>
+    <br> 1 = = '1'
+    <div id="dEqualitySec"></div>
+    <br>1 = = = 1
+    <div id="tEquality"></div>
+    <br>1 = = = '1'
+    <div id="tEqualitySec"></div>
+    <script type="text/javascript">
+    document.getElementById("dEquality").innerHTML = (1 == 1);
+    document.getElementById("dEqualitySec").innerHTML = (1 == '1');
+    document.getElementById("tEquality").innerHTML = (1 === 1);
+    document.getElementById("tEqualitySec").innerHTML = (1 === '1');
+    </script>
+</body>
+
+</html>

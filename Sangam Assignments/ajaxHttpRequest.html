@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+	<style>
+	#student
+	{
+		text-align: center;
+		margin-top: 30px;
+		margin-left: 30px
+		margin-right: 30px;
+		padding: 10px;
+		border: 3px;
+		background-color: azure;
+	}
+	.hidden
+		{display: none}
+	</style>
+<body>
+	<h2><center>The XMLHttpRequest Object</center></h2>
+<div id="student">
+	</div>
+
+
+<script>
+$(document).ready(function () {
+    $.ajax({ 
+        type: 'GET', 
+        url: 'http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students', 
+        data: { get_param: 'value' }, 
+        success: function (result) { },
+		complete:function (request){
+		$("#student").html(request.responseText);
+	}
+    });
+});
+	
+</script>
+
+</body>
+</html>

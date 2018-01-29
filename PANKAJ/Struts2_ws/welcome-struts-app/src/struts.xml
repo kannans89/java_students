@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="main" extends="struts-default">
+		<action name="browse" class="com.techlabs.action.BrowseAction">
+			<result name="success">
+				/View/browse.jsp
+			</result>
+			<result name="error">
+				/View/error.jsp
+			</result>
+		</action>
+		<action name="home" class="com.techlabs.action.HomeAction">
+			<result name="success">
+				/View/home.jsp
+			</result>
+		</action>
+		<action name="wish" class="com.techlabs.action.WishAction">
+			<result name="success">
+				/View/wish.jsp
+			</result>
+		</action>
+		<action name="welcome" class="com.techlabs.action.LoginAction">
+			<result name="success">
+				/View/welcome.jsp
+			</result>
+		</action>
+		<action name="login">
+			<result name="success">
+				/View/login.jsp
+			</result>
+		</action>
+	</package>
+</struts>

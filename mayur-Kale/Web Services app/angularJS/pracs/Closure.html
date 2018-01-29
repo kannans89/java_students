@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Closure</title>
+</head>
+
+<body>
+    <h1>Understanding Closures!</h1>
+    <script type="text/javascript">
+    function Increment(count) {
+      //  var _counter = count;
+        this.increment = function() {
+            return (++count);
+        }
+    };
+     var count1 = new Increment(2);
+    console.log(count1.increment());
+    console.log(count1.increment());
+
+    console.log(count1.increment());
+    
+    </script>
+</body>
+
+</html>

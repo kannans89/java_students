@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Understanding Binding</title>
+    <script src='angular.min.js'></script>
+    <script src='mod.js'></script>
+</head>
+
+<body ng-app='main' ng-controller='StudentCtrl'>
+    <section>
+        Name: {{student.getName()}}
+        <br> Id: {{student.getId()}}
+        <br> Age: {{student.getAge()}}
+        <br><p style="color:{{colorType}}"> Aggregate: {{student.getAgg()}}</span>
+        <br>
+    </section>
+</body>
+
+</html>

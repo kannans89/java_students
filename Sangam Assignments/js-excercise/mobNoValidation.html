@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="excercise.css">
+	</head>
+	<style>
+		body
+		{
+			background-color: aliceblue;
+		}
+		button
+		{
+			background-color: dimgray;
+			color: white;
+			padding:7px;
+			border-radius:8px;
+			width:70px;
+			border:1px
+		}
+	</style>
+	<form name="mobValidation">
+	<body>
+		<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="myVideo.html">Video</a></li>
+				<li><a href="mailValidation.html">E-mail Validation</a></li>
+				<li><a href="#">Mobile No Validation</a></li>
+				<li><a href="circle.html">Circle</a></li>
+				<li><a href="semantics.html">HTML5 Semantics</a></li>
+		</ul>
+		<div id="container">
+			<input type="text" id="mobNo" name="mobNo" placeholder="Enter yuor mobile number">
+			<button type="submit" id="submit" onclick="isValidMobNo(document.mobValidation.mobNo)">Submit</button>
+		</div>
+		<script>
+			var regExpression=/^\d{10}$/;
+			function isValidMobNo(mobile)
+			{
+				if(mobile.value=="")
+				{
+					alert("Enter Mobile No");
+					return false;
+				}
+				else if(mobile.value.match(regExpression))
+				{
+					alert("Validated mobile no. sucessfully..!!");
+					return true;
+				}
+				else
+				{
+					alert("Please enter valid mobile no.");
+					return false;
+				}
+				
+				document.mobValidation.mobNo.value="";
+			}
+		</script>
+	</body>
+	</form>
+</html>

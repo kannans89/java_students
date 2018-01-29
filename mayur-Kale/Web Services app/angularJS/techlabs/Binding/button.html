@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Button</title>
+    <script src='angular.min.js'></script>
+    <script src='loadController.js'></script>
+</head>
+
+<body ng-app='main' ng-controller='buttonCtrl'>
+    <center>
+        <input type="button" ng-click='submit()' value='Load'>
+    </center>
+    <section ng-show="visible">
+        Name:
+        <span ng-bind='student.name'></span>
+        <br> Id:
+        <span ng-bind='student.id'></span>
+        <br> Age:
+        <span ng-bind='student.age'></span>
+        <br> Aggegrate:
+        <span ng-bind='student.agg'></span>
+        <br> Dp:
+        <br>
+        <img ng-src={{student.src}} height="42" width="42"></img>
+        <br>
+    </section>
+</body>
+
+</html>
